@@ -1,28 +1,45 @@
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import SideImage from "../assets/photos/Overview.png";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
-import { loginValidate } from "../helper/validate";
+import { adminLogin } from "../api/adminApi";
+// import { loginValidate } from "../helper/validate";
 
 export default function AdminLogin() {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validate: loginValidate,
+    // validate: loginValidate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
       console.log(values);
+
+      const email= values.email;
+      const password = values.password;
+      let loginPromise = adminLogin({email, password});
+      toast.promise(loginPromise, {
+        loading: "Checking", 
+        success: <b>Login Success</b>,
+        error: <b>Login Error</b>,
+      });
+      loginPromise.then((res) => {
+        let { admintoken } = res?.data;
+        localStorage.setItem("admintoken", admintoken); 
+        navigate("adminside");
+      });
     },
   });
 
   return (
-    <div className="flex items-center justify-center min-h-screen  bg-indigo-900 ">
+    <div className="flex items-center justify-center min-h-screen bg-darkPurple  ">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className=" w-4/5 h-2/3  bg-sky-800 rounded-3xl">
+      <div className="w-4/5 h-2/3  bg-litePurple ">
         <div className="text-center py-2">
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">
             ADMIN LOGIN
@@ -52,7 +69,7 @@ export default function AdminLogin() {
 
             <div className="flex items-center justify-center pb-3">
               <button
-                className="px-4 py-2  bg-indigo-900 text-white  shadow-md shadow-black hover:bg-slate-800"
+                className="px-4 py-2  bg-darkPurple text-white  shadow-md shadow-black hover:bg-slate-800"
                 type="submit"
               >
                 Login

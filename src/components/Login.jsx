@@ -1,11 +1,24 @@
-// import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import football from "../assets/photos/Football.png";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { loginValidate } from "../helper/validate";
+import { useAuthStore } from "../store/store";
+import useFetch from "../hooks/fetch.hook";
+import { useEffect, useState } from "react";
+import { verifyPassword } from "../api/userApi";
 
 export default function Login() {
+  // const [email, setEmail] = useState('');
+  // const [password,setPassword]=useState('')
+
+  // useEffect(() => {
+  //   const [{ isLoading, apiData, serverError }] = useFetch(`/user/${email}`);
+
+  // }, [email,password]);
+  const setUser = useAuthStore((state) => state.setUser);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -16,18 +29,34 @@ export default function Login() {
     validateOnChange: false,
     onSubmit: async (values) => {
       console.log(values);
+
+      var email = values.email;
+      var password = values.password;
+     
+      let loginPromise = verifyPassword({email, password});
+      toast.promise(loginPromise, {
+        loading: "Checking", 
+        success: <b>Login Success</b>,
+        error: <b>Incorrect Password</b>,
+      });
+      loginPromise.then((res) => {
+        let { token } = res?.data;
+        localStorage.setItem("token", token); 
+        navigate("/profile");
+      });
     },
   });
+  // const [email,password]=[]
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-sky-600 ">
+    <div className="flex items-center justify-center min-h-screen bg-litePurple ">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className=" w-4/5 h-2/3  bg-indigo-900 rounded-3xl">
+      <div className=" w-4/5 h-5/6  bg-darkPurple ">
         <div className="text-center py-2">
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">LOGIN</h1>
         </div>
         <div className="flex items-center justify-evenly">
-          <div className="hidden sm:block justify-center  ">
+          <div className="hidden sm:block justify-center pb-7 ">
             <img src={football} alt="" />
           </div>
           <form onSubmit={formik.handleSubmit}>
@@ -54,9 +83,9 @@ export default function Login() {
                   Sign Up
                 </Link>
               </h3>
-              <Link to={"/password"}>
+              {/* <Link to={"/password"}>
                 <h1 className="text-slate-100">Forgot Password?</h1>
-              </Link>
+              </Link> */}
             </div>
             <div className="flex items-center justify-center pb-3">
               <button

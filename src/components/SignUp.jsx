@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { Link,useNavigate } from "react-router-dom";
+import {toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { registerValidate } from "../helper/validate";
+import { registerUser } from "../api/userApi";
+
 
 function SignUp() {
+  const navigate=useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -21,12 +24,22 @@ function SignUp() {
     validateOnChange: false,
     onSubmit: async (values) => {
       console.log(values);
+     let registerPromise= registerUser(values)
+      toast.promise(registerPromise,{
+        loading:"Creating",
+        success:<b>Register Success</b>,
+        error:<b>Cant register</b>
+
+      })
+      registerPromise.then(function(){navigate("/otp")})
     },
+
+
   });
   return (
-    <div className="flex items-center justify-center min-h-screen bg-sky-600 ">
+    <div className="flex items-center justify-center min-h-screen bg-litePurple ">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className="w-4/5 h-2/3  bg-indigo-900 rounded-3xl">
+      <div className="w-4/5 h-2/3  bg-darkPurple ">
         <div className="text-center py-2">
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">
             Register Now
