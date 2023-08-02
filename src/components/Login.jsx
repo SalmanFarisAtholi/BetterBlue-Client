@@ -10,13 +10,7 @@ import { useEffect, useState } from "react";
 import { verifyPassword } from "../api/userApi";
 
 export default function Login() {
-  // const [email, setEmail] = useState('');
-  // const [password,setPassword]=useState('')
 
-  // useEffect(() => {
-  //   const [{ isLoading, apiData, serverError }] = useFetch(`/user/${email}`);
-
-  // }, [email,password]);
   const setUser = useAuthStore((state) => state.setUser);
   const navigate = useNavigate();
   const formik = useFormik({
@@ -46,7 +40,6 @@ export default function Login() {
       });
     },
   });
-  // const [email,password]=[]
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-litePurple ">

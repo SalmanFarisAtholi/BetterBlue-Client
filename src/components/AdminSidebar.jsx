@@ -29,42 +29,42 @@ function AdminSidebar({ children }) {
       icon: <FaTh />,
     },
     {
-      path: "/players",
+      path: "players",
       name: "Players",
       icon: <TbPlayFootball />,
     },
     {
-      path: "/fixtures",
+      path: "fixtures",
       name: "Fixtures",
       icon: <TbPlayerTrackNext />,
     },
     {
-      path: "/results",
+      path: "results",
       name: "Results",
       icon: <TbPlayerTrackPrev />,
     },
     {
-      path: "/stadium",
+      path: "stadium",
       name: "Stadium",
       icon: <MdStadium />,
     },
     {
-      path: "/news",
+      path: "news",
       name: "News",
       icon: <ImNewspaper />,
     },
     {
-      path: "/tickets",
+      path: "tickets",
       name: "Tickets",
       icon: <BsTicketPerforated />,
     },
     {
-      path: "/gallary",
+      path: "gallary",
       name: "Gallary",
       icon: <TfiGallery />,
     },
     {
-      path: "/sponsor",
+      path: "sponsor",
       name: "Sponsor",
       icon: <SlBadge />,
     },
@@ -73,7 +73,7 @@ function AdminSidebar({ children }) {
     <div className="flex">
       <div
         style={{ width: isOpen ? "200px" : "50px" }}
-        className="bg-darkPurple h-screen transition-all duration-500 text-white"
+        className="bg-darkPurple transition-all duration-500 text-white"
       >
         <div className="flex items-center py-5 px-4">
           {/* <h1 className="text-3xl"> */}

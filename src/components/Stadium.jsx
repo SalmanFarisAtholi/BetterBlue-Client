@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import stadium from "../assets/Stadium/My project-1.png";
-
+import { Link, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
+import { useState } from "react";
+import { getStand } from "../api/adminApi";
 function Stadium() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let Data = getStand();
+    Data.then((data) => {
+      console.log(data.data);
+      setData(data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-litePurple">
       <div className="flex items-center justify-center p-10">
@@ -20,8 +35,10 @@ function Stadium() {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <div className="w-5/6 bg-slate-300">
-          <button className="bg-slate-800 text-rose-50 font-bold rounded-md">ADD</button>
+        <div className="w-5/6 bg-slate-300 flex items-center justify-center">
+          <button className="bg-darkPurple text-rose-50 font-bold rounded-sm w-24 h-14 hover:bg-litePurple drop-shadow-2xl ">
+            <Link to="addStadium">ADD</Link>
+          </button>
         </div>
       </div>
       <div className="flex items-center justify-center pb-32 ">
@@ -37,29 +54,22 @@ function Stadium() {
                 </tr>
               </thead> */}
               <tbody className="font-semibold text-sm sm:text-base">
-                <tr className="flex justify-evenly p-3">
-                  <td>EAST UPPER</td>
-                  <td>12000 Person</td>
-                  <td>₹ 450</td>
-                  <td>
-                    <button className="w-10 sm:w-12 rounded bg-amber-600">
-                      EDIT
-                    </button>
-                  </td>
-                </tr>
-                <tr className="flex justify-evenly p-3">
-                  <td>WEST UPPER</td>
-                  <td>4000 Person</td>
-                  <td>₹ 360</td>
-                  <td>
-                    <button className="w-10 sm:w-12 rounded bg-amber-600">
-                      EDIT
-                    </button>
-                  </td>
-                </tr>
+                {data.map((item) => (
+                  <tr className="flex text-center items-center justify-around p-3">
+                    <td className="w-1/4" >{item.standName}</td>
+                    <td className="w-1/4">{item.capacity}</td>
+                    <td className="w-1/4">₹ {item.price}</td>
+                    <td className="w-1/4">
+                      <button className="w-10 sm:w-12 rounded bg-amber-600">
+                      <Link to={`editStand/${item._id}`}>EDIT</Link>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+
+             
               </tbody>
             </table>
-            ​
           </div>
         </div>
       </div>
