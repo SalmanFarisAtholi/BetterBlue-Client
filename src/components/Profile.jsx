@@ -35,13 +35,7 @@ export default function Profile() {
                   type="email"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block mb-2 text-slate-200">Password</label>
-                <input
-                  className="w-64 px-3 py-2 border border-gray-300 rounded-md"
-                  type="password"
-                />
-              </div>
+            
               <div className="mb-4">
                 <label className="block mb-2 text-slate-200">Country</label>
 
@@ -76,15 +70,7 @@ export default function Profile() {
                   type="tel"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block mb-2 text-slate-200">
-                  Confirm Password
-                </label>
-                <input
-                  className="w-64 px-3 py-2 border border-gray-300 rounded-md"
-                  type="password"
-                />
-              </div>
+            
               <div className="mb-4">
                 <label className="block mb-2 text-slate-200">City</label>
                 <input

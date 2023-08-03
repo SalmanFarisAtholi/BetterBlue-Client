@@ -40,3 +40,10 @@ export async function getStand() {
     return Promise.reject({ error: "Couldn't find Stand..." });
   }
 }
+export async function editStand(id){
+  try {
+    console.log("hi");
+  } catch (error) {
+    
+  }
+}

@@ -3,19 +3,26 @@ import stadium from "../assets/Stadium/My project-1.png";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import { useState } from "react";
-import { getStand } from "../api/adminApi";
+import { getStand, editStand } from "../api/adminApi";
 function Stadium() {
   const [data, setData] = useState([]);
+  const [id, setId] = useState('');
 
   useEffect(() => {
     let Data = getStand();
     Data.then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       setData(data.data);
     }).catch((error) => {
       console.log(error);
     });
   }, []);
+
+  
+  // const submit = (event) => {
+  //   event.preventDefault();
+  //   setId(id);
+  // };
 
   return (
     <div className="min-h-screen bg-litePurple">
@@ -56,18 +63,20 @@ function Stadium() {
               <tbody className="font-semibold text-sm sm:text-base">
                 {data.map((item) => (
                   <tr className="flex text-center items-center justify-around p-3">
-                    <td className="w-1/4" >{item.standName}</td>
+                    <td className="w-1/4">{item.standName}</td>
                     <td className="w-1/4">{item.capacity}</td>
                     <td className="w-1/4">₹ {item.price}</td>
                     <td className="w-1/4">
-                      <button className="w-10 sm:w-12 rounded bg-amber-600">
-                      <Link to={`editStand/${item._id}`}>EDIT</Link>
+                      <button
+                        // onClick={submit(item._id)}
+                        className="w-10 sm:w-12 rounded bg-amber-600"
+                      >
+                        {/* EDIT */}
+                        <Link to={`editStand/${item._id}`}>EDIT</Link>
                       </button>
                     </td>
                   </tr>
                 ))}
-
-             
               </tbody>
             </table>
           </div>
