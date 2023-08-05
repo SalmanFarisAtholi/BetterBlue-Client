@@ -40,10 +40,34 @@ export async function getStand() {
     return Promise.reject({ error: "Couldn't find Stand..." });
   }
 }
-export async function editStand(id){
+export async function editStand(id) {
   try {
     console.log("hi");
+  } catch (error) {}
+}
+
+export async function addMatch(formData) {
+  console.log(formData);
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/addMatch", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } else {
+      return Promise.reject({ error: "Couldn't Create Match.." });
+    }
   } catch (error) {
-    
+    return Promise.reject({ error: "Couldn't Create Match.." });
+  }
+}
+
+export async function getMatch() {
+  try {
+    const { data } = await axios.get("/admin/getMatch");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Matches..." });
   }
 }

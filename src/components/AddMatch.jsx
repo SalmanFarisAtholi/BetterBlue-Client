@@ -1,24 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
-import { createStand } from "../api/adminApi";
-import { useNavigate, Link } from "react-router-dom";
+import { addMatch } from "../api/adminApi";
+import { useNavigate } from "react-router-dom";
 function AddMatch() {
+  const navigate = useNavigate();
+
+  const [uploadedImage, setUploadedImage] = useState("");
+  const [message, setMessage] = useState("");
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    console.log(selectedFile);
+    const allowedTypes = ["image/jpeg", "image/png"];
+    if (selectedFile && allowedTypes.includes(selectedFile.type)) {
+      setUploadedImage(selectedFile);
+      setMessage(null);
+    } else {
+      setUploadedImage(null);
+      setMessage("Please select a JPEG or PNG image.");
+    }
+  };
   const formik = useFormik({
     initialValues: {
       opponent: "",
-      logo: "",
+      // logo: "",
       shortName: "",
       matchTime: "",
-      matchType: "",
+      matchType: "League",
       totalMatch: "",
       win: "",
       draw: "",
       winProbability: "",
-      home: "",
+      home: "Estadio Radolf,Atholi",
     },
     onSubmit: async (values) => {
-    console.log(values);
+      const formData = new FormData();
+      formData.append("opponent", values.opponent);
+      formData.append("logo", uploadedImage);
+      formData.append("shortName", values.shortName);
+      formData.append("matchTime", values.matchTime);
+      formData.append("matchType", values.matchType);
+      formData.append("totalMatch", values.totalMatch);
+      formData.append("win", values.win);
+      formData.append("draw", values.draw);
+      formData.append("winProbability", values.winProbability);
+      formData.append("home", values.home);
+
+      let addMatchPromise = addMatch(formData);
+      toast.promise(addMatchPromise, {
+        loading: "Creating",
+        success: <b>Match Added</b>,
+        error: message ? message : <b>Cant Add Match</b>,
+      });
+      addMatchPromise
+        .then(function () {
+          setTimeout(() => {
+            navigate("/admin/fixtures");
+          }, 2000);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   });
   return (
@@ -29,7 +71,7 @@ function AddMatch() {
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">ADD MATCH</h1>
         </div>
         <div className="flex items-center justify-evenly ">
-          <form onSubmit={formik.handleSubmit}>
+          <form encType="multipart/form-data" onSubmit={formik.handleSubmit}>
             <div className="md:flex sm:flex items-center justify-center">
               <div className="m-5 w-6/12">
                 <div className="mb-4">
@@ -82,23 +124,23 @@ function AddMatch() {
                     Select Venue
                   </label>
 
-                  <select
+                  <input
                     {...formik.getFieldProps("home")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
+                    type="text"
                     required
                   >
-                    <option value="Home">Home</option>
-                    <option value="Away">Away</option>
-                    <option value="Other">Other</option>
-                  </select>
+                   
+                  </input>
                 </div>
               </div>
               <div className="m-5 w-6/12">
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">Logo</label>
                   <input
-                    {...formik.getFieldProps("logo")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
+                    onChange={handleFileChange}
+                    // {...formik.getFieldProps("logo")}
+                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm text-white"
                     type="file"
                     required
                   />

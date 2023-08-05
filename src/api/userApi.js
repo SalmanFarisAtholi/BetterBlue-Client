@@ -133,3 +133,12 @@ export async function resetPassword({ email, password }) {
 }
 
 
+export async function getMatch() {
+  try {
+    const { data } = await axios.get("/getMatch");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Matches..." });
+  }
+}
+

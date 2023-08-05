@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
+import { Link } from "react-router-dom";
 
 function UserNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [dropdown, setDropdown] = useState(false);
+  const toggledropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -11,13 +17,13 @@ function UserNavbar() {
   return (
     <nav className="bg-darkPurple">
       <div className="w-full">
-        <div className="flex items-center justify-evenly h-24">
+        <div className="flex items-center justify-evenly h-28">
           <div className="hidden md:block">
             <div className="flex items-center justify-evenly">
               <div className="flex items-center justify-evenly">
                 <a href="#" className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    Home
+                  <Link to={"/home"}>Home</Link> 
                   </p>
                 </a>
                 <a href="#" className="px-14 py-2">
@@ -25,15 +31,17 @@ function UserNavbar() {
                     Team
                     <span>
                       <div className="dropdown relative inline-block">
-                        <button className="dropbtn">+</button>
-                        <div className="dropdown-content  absolute dropbtn-hover:block">
+                        <button onClick={toggledropdown} className="dropbtn">
+                          +
+                        </button>
+                        {/* <div className="`${toggledropdown?}`">
                           <a className="p-3 table hover:bg-slate-500" href="#">
                             Link 1
                           </a>
                           <a className="p-3 table hover:bg-slate-500" href="#">
                             Link 1
                           </a>
-                        </div>
+                        </div> */}
                       </div>
                     </span>
                     {/* <span>
@@ -74,12 +82,12 @@ function UserNavbar() {
               <div className="flex items-center justify-evenly">
                 <a href="#" className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    Fixtures
+                   <Link to={"/fixtures"}>Fixtures</Link> 
                   </p>
                 </a>
                 <a href="#" className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    Pages
+                  <Link to={"/profile"}>Profile</Link> 
                   </p>
                 </a>
                 <a href="#" className="px-14 py-2">

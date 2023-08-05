@@ -12,9 +12,9 @@ export default function Profile() {
     navigate("/");
   }
   return (
-    <div className="flex items-center justify-center min-h-screen bg-sky-600 ">
+    <div className="flex items-center justify-center min-h-screen bg-darkPurple">
       {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
-      <div className="w-4/5 h-2/3  bg-indigo-900 rounded-3xl">
+      <div className="w-4/5 h-2/3  bg-litePurple rounded-3xl">
         <div className="text-center py-2">
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">Profile</h1>
         </div>
