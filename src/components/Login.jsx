@@ -22,8 +22,6 @@ export default function Login() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
-      console.log(values);
-
       var email = values.email;
       var password = values.password;
      
@@ -35,6 +33,8 @@ export default function Login() {
       });
       loginPromise.then((res) => {
         let { token } = res?.data;
+        console.log(res.data);
+        setUser(res.data.userEmail)
         localStorage.setItem("token", token); 
         navigate("/home");
       });

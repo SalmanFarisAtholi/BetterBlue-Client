@@ -55,11 +55,9 @@ export async function registerUser(credentials) {
 
 /** login function */
 export async function verifyPassword({ email, password }) {
-  console.log(email);
   try {
     if (email) {
       const { data } = await axios.post("/login", { email, password });
-      console.log(data);
       return Promise.resolve({ data });
       
     }
@@ -140,5 +138,15 @@ export async function getMatch() {
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Matches..." });
   }
+  
 }
 
+export async function getOneMatch(id){
+try {
+  const { data } = await axios.get(`/getOneMatch/${id}`);
+  return Promise.resolve({ data });
+} catch (error) {
+  return Promise.reject({ error: "Couldn't find Match Deatiles..." });
+
+}
+}

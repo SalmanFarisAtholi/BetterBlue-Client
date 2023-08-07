@@ -4,17 +4,30 @@ import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import vs from "../assets/banners/vs2.png";
 import stadium from "../assets/Stadium/My project-1.png";
 import { getStand, editStand } from "../api/adminApi";
-import { Link, useNavigate } from "react-router-dom";
+import { getOneMatch } from "../api/userApi";
+import { baseURL } from "../constants/constant";
+
+import { Link, useNavigate,useParams } from "react-router-dom";
 
 function Ticket() {
   const [data, setData] = useState([]);
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
+  const { id } = useParams();
+  const [match,setMatch]=useState([])
 
   useEffect(() => {
     let Data = getStand();
     Data.then((data) => {
       // console.log(data.data);
       setData(data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+
+    let matchData = getOneMatch(id);
+    matchData.then((data) => {
+      console.log(data.data);
+      setMatch(data.data);
     }).catch((error) => {
       console.log(error);
     });
@@ -33,7 +46,7 @@ function Ticket() {
         <div className="h-64 w-full text-white flex justify-evenly items-center bg-litePurple">
           <img className=" h-52 w-52" src={logo} alt="" />
           <img className=" h-52 w-52" src={vs} alt="" />
-          <img className=" h-52 w-52" src={logo} alt="" />
+          <img className=" h-52 w-52" src={`${baseURL}/${match.logo}`} alt="" />
         </div>
       </div>
 
@@ -75,9 +88,9 @@ function Ticket() {
         <div className="flex items-center justify-center pb-10 ">
           <div className="flex items-center justify-center w-5/6 bg-slate-300">
             <div className="bg-slate-50 w-11/12 m-5 text-center text-red-700 text-2xl font-semibold">
-              <h1>*You cant Book VIP seats and Media seats</h1>
+              <h1>*You can't Book VIP seats and Media seats</h1>
               <h1>
-                *You cant Book NL stand seats.Because its for opposite team
+                *You can't Book NL stand seats.Because its for opposite team
                 fans.
               </h1>
             </div>
@@ -140,6 +153,10 @@ function Ticket() {
               </ol>
             </div>
           </div>
+        </div>
+
+        <div>
+
         </div>
       </div>
     </div>

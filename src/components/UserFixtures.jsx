@@ -11,13 +11,13 @@ function UserFixtures() {
   useEffect(() => {
     let Data = getMatch();
     Data.then((data) => {
-      console.log(data);
       setData(data.data);
     }).catch((error) => {
       console.log(error);
     });
   }, []);
-  return (
+
+   return (
     <div>
       <div
         className=" w-ful flex items-center bg-cover justify-start p-44"
@@ -59,7 +59,7 @@ function UserFixtures() {
             </div>
             <div className="text-white">
               <h1 className="hover:shadow-2xl shadow-white">
-                <Link to={"/headToHead"}>More & Get Tickets Now</Link>
+                <Link to={`/headToHead/${item._id}`}>More & Get Tickets Now</Link>
               </h1>
             </div>
           </div>

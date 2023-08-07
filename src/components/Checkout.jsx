@@ -1,0 +1,166 @@
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field, FieldArray } from "formik";
+import { useToaster } from "react-hot-toast";
+import { getStand } from "../api/adminApi";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+import { useAuthStore, userAuthStore } from "../store/store";
+
+const Checkout = () => {
+  const [data, setData] = useState([]);
+  const [ticketType, setTicketType] = useState(false);
+  const [price, setPrice] = useState(false);
+  const { user } = useAuthStore((state) => state.auth);
+
+  console.log(user);
+
+  const handleTicketTypeChange = (e) => {
+    const stand = e.target.value.split(",");
+    setTicketType(stand[1]);
+  };
+  useEffect(() => {
+    let Data = getStand();
+    Data.then((data) => {
+      // console.log(data.data);
+      setData(data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
+  const toaster = useToaster();
+
+  const initialValues = {
+    email: "",
+    ticketType: "standard",
+    members: [{ name: "", mobileNumber: "" }],
+  };
+
+  const handleSubmit = async (values) => {
+    console.log(values);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    toaster.success("Checkout Successful!", {
+      position: "top-center",
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-darkPurple flex items-center justify-center">
+      <div className="max-w-md w-full px-6 py-8 bg-slate-50 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-semibold text-center mb-6">
+          Ticket Checkout
+        </h1>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          {({ values }) => (
+            <Form>
+              <div className="grid grid-cols-2 gap-4 mb-3">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Ticket Type:
+                  </label>
+                  <select
+                    defaultValue="none"
+                    name="ticketType"
+                    onChange={handleTicketTypeChange}
+                    className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                  >
+                    <option value="">-Select-</option>
+                    {data.map((item) => (
+                      <option value={[item.standName, item.price]}>
+                        {item.standName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Price
+                  </label>
+                  <Field
+                    name="Price"
+                    value={ticketType ? `₹ ${ticketType}/-` : 0}
+                    readOnly
+                    className="w-full px-4 py-2 border rounded focus:outline-none"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Email</label>
+                <Field
+                  name="email"
+                  value={values.email}
+                  required
+                  type="email"
+                  className="w-full px-4 py-2 border rounded focus:outline-none"
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-medium mb-2">
+                  Persons:
+                </label>
+                <FieldArray
+                  onChange={setPrice(values.members.length * ticketType)}
+                  name="members"
+                >
+                  {({ push, remove }) => (
+                    <>
+                      {values.members.map((member, index) => (
+                        <div key={index} className="mb-4 ">
+                          <div className="flex gap-1">
+                            <Field
+                              type="text"
+                              name={`members[${index}].name`}
+                              placeholder="Name"
+                              required
+                              className="w-1/2 px-4 py-2  border rounded focus:outline-none focus:ring focus:border-blue-300"
+                            />
+                            <Field
+                              type="tel"
+                              name={`members[${index}].mobileNumber`}
+                              placeholder="Mobile Number"
+                              required
+                              className="w-1/2  px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                            />
+                            {index >= 0 && (
+                              <button
+                                type="button"
+                                onClick={() => remove(index)}
+                                className=" text-red-500 hover:text-red-600 text-2xl font-semibold"
+                              >
+                                &times;
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                      <div className="flex justify-between items-center">
+                        <button
+                          type="button"
+                          onClick={() => push({ name: "", mobileNumber: "" })}
+                          className="p-3 bg-litePurple text-white font-medium py-3 rounded hover:bg-darkPurple"
+                        >
+                          <BsFillPersonPlusFill />
+                        </button>
+                        <div className="px-6 text-lg font-semibold">
+                          <h1>{`Total: ₹ ${price ? price : 0}`}</h1>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </FieldArray>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-green-700 text-white font-medium py-3 rounded hover:bg-red-700"
+              >
+                <h1>{`PAY ₹ ${price ? price : 0}`}</h1>
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
+  );
+};
+
+export default Checkout;

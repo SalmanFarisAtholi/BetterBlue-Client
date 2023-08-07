@@ -15,6 +15,7 @@ import UserNavbar from "../components/UserNavbar";
 import UserFixtures from "../components/UserFixtures";
 import HeadToHead from "../components/HeadToHead";
 import Ticket from "../components/Ticket";
+import Checkout from "../components/Checkout";
 function UserRouter() {
   return (
     <>
@@ -44,6 +45,7 @@ function UserRouter() {
           path="/profile"
           element={
             <UserProtectedRoutes>
+              <UserNavbar/>
               <Profile />
             </UserProtectedRoutes>
           }
@@ -88,7 +90,7 @@ function UserRouter() {
         />
         <Route
           exact
-          path="/headToHead"
+          path="/headToHead/:id"
           element={
             <UserProtectedRoutes>
               <UserNavbar />
@@ -98,14 +100,16 @@ function UserRouter() {
         />
         <Route
           exact
-          path="/ticket"
+          path="/ticket/:id"
           element={
             <UserProtectedRoutes>
               <UserNavbar />
               <Ticket />
+              <Checkout/>
             </UserProtectedRoutes>
           }
         />
+       
       </Routes>
     </>
   );
