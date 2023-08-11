@@ -15,19 +15,7 @@ function Fixtures() {
       console.log(error);
     });
   }, []);
-  const splitTimeFormat = (timeFormat) => {
-    const [datePart, timePart] = timeFormat.split("T");
-    const [yearValue, monthValue, dayValue] = datePart.split("-");
-    const [hourValue, minuteValue, secondValue] = timePart.split(":");
-    return {
-      year: yearValue,
-      month: monthValue,
-      day: dayValue,
-      hour: hourValue,
-      minute: minuteValue,
-      second: secondValue,
-    };
-  };
+
   return (
     <div className="min-h-screen bg-litePurple">
       <div className="flex items-center justify-center">
@@ -36,11 +24,10 @@ function Fixtures() {
         </div>
       </div>
       {data.map((item) => (
-        <div>
-          <div className="flex h-80 items-center justify-center border-2 border-slate-500 bg-darkPurple my-5 mx-32 gap-2 ">
-            <div className="w-1/2 flex h-3/4 gap-2 ">
+          <div className="flex h-72 items-center justify-center border-2 border-slate-500 bg-darkPurple my-5 mx-32 gap-2 ">
+            <div className="w-1/2 flex h-3/4 gap-2 items-center justify-evenly ">
               <div className="text-center text-white">
-                <img src={logo} alt="" />
+                <img className="w-40 h-40" src={logo} alt="" />
                 <h1>Better Blue FC</h1>
               </div>
               <div className="w-12 flex justify-center items-center">
@@ -48,7 +35,11 @@ function Fixtures() {
                   <h1 className="text-white">VS</h1>
                 </div>
               </div>
-                <img src={`${baseURL}/${item.logo}`} alt="" />
+              <div className="text-center text-white">
+                <img className="w-40 h-40" src={`${baseURL}/${item.opponentId.logo}`} alt="" />
+                <h1 className="pt-2">{item.opponentId.name}</h1>
+
+              </div>
             </div>
 
             <div className="w-1/2  h-3/4 gap-2 p-5">
@@ -67,7 +58,6 @@ function Fixtures() {
               </div>
             </div>
           </div>
-        </div>
       ))}
     </div>
   );

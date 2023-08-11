@@ -59,7 +59,6 @@ export async function verifyPassword({ email, password }) {
     if (email) {
       const { data } = await axios.post("/login", { email, password });
       return Promise.resolve({ data });
-      
     }
   } catch (error) {
     return Promise.reject({ error: "Password doesn't Match...!" });
@@ -110,7 +109,9 @@ export async function generateOTP(username) {
 /** verify OTP */
 export async function verifyOTP({ code }) {
   try {
-    const { data, status } = await axios.get("/verifyOTP", { params:{code} });
+    const { data, status } = await axios.get("/verifyOTP", {
+      params: { code },
+    });
     return { data, status };
   } catch (error) {
     return Promise.reject(error);
@@ -130,7 +131,6 @@ export async function resetPassword({ email, password }) {
   }
 }
 
-
 export async function getMatch() {
   try {
     const { data } = await axios.get("/getMatch");
@@ -138,15 +138,23 @@ export async function getMatch() {
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Matches..." });
   }
-  
 }
 
-export async function getOneMatch(id){
-try {
-  const { data } = await axios.get(`/getOneMatch/${id}`);
-  return Promise.resolve({ data });
-} catch (error) {
-  return Promise.reject({ error: "Couldn't find Match Deatiles..." });
-
+export async function getOneMatch(id) {
+  console.log(id);
+  try {
+    const { data } = await axios.get(`/getOneMatch/${id}`);
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Match Deatiles..." });
+  }
 }
+
+export async function doPayment(values, matchId) {
+  try {
+    const { data } = await axios.post(`/doPayment`,{values,matchId});
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Payment Failed" });
+  }
 }

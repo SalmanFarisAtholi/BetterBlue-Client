@@ -16,8 +16,7 @@ function UserFixtures() {
       console.log(error);
     });
   }, []);
-
-   return (
+  return (
     <div>
       <div
         className=" w-ful flex items-center bg-cover justify-start p-44"
@@ -44,9 +43,13 @@ function UserFixtures() {
                   <h1 className="text-white">VS</h1>
                 </div>
               </div>
-              <div className="text-center  text-white">
-                <img src={`${baseURL}/${item.logo}`} alt="" />
-                <h1>{item.opponent}</h1>
+              <div className="text-center  text-white ml-2">
+                <img
+                  className=" h-36 w-36"
+                  src={`${baseURL}/${item.opponentId.logo}`}
+                  alt=""
+                />
+                <h1>{item.opponentId.name}</h1>
               </div>
             </div>
             <div className="text-white text-center">
@@ -59,7 +62,9 @@ function UserFixtures() {
             </div>
             <div className="text-white">
               <h1 className="hover:shadow-2xl shadow-white">
-                <Link to={`/headToHead/${item._id}`}>More & Get Tickets Now</Link>
+                <Link to={`/headToHead/${item._id}`}>
+                  More & Get Tickets Now
+                </Link>
               </h1>
             </div>
           </div>

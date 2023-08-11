@@ -6,14 +6,15 @@ import stadium from "../assets/Stadium/My project-1.png";
 import { getStand, editStand } from "../api/adminApi";
 import { getOneMatch } from "../api/userApi";
 import { baseURL } from "../constants/constant";
+import Checkout from "../components/Checkout";
+import Moment from "react-moment";
 
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Ticket() {
   const [data, setData] = useState([]);
-  // const [id, setId] = useState("");
   const { id } = useParams();
-  const [match,setMatch]=useState([])
+  const [match, setMatch] = useState([]);
 
   useEffect(() => {
     let Data = getStand();
@@ -25,12 +26,14 @@ function Ticket() {
     });
 
     let matchData = getOneMatch(id);
-    matchData.then((data) => {
-      console.log(data.data);
-      setMatch(data.data);
-    }).catch((error) => {
-      console.log(error);
-    });
+    matchData
+      .then((data) => {
+        console.log(data.data);
+        setMatch(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   return (
     <div>
@@ -43,10 +46,25 @@ function Ticket() {
         </div>
       </div>
       <div>
-        <div className="h-64 w-full text-white flex justify-evenly items-center bg-litePurple">
-          <img className=" h-52 w-52" src={logo} alt="" />
-          <img className=" h-52 w-52" src={vs} alt="" />
-          <img className=" h-52 w-52" src={`${baseURL}/${match.logo}`} alt="" />
+        <div className="h-80 w-full text-white flex justify-evenly items-center bg-litePurple">
+          <div className="text-center">
+            <img className=" h-52 w-52" src={logo} alt="" />
+            <h1 className="text-xl font-semibold">Better Blue FC</h1>
+          </div>
+          <div className="text-center">
+            <img className=" h-52 w-52" src={vs} alt="" />
+            <h1 className="p-2 text-2xl">{match.matchType}</h1>
+
+            <Moment format="DD MMMM YYYY  hh:mm A">{match.matchTime}</Moment>
+          </div>
+          <div className="text-center">
+            <img
+              className=" h-52 w-52"
+              src={`${baseURL}/${match.opponentId?.logo}`}
+              alt=""
+            />
+            <h1 className="text-xl font-semibold">{match.opponentId?.name}</h1>
+          </div>
         </div>
       </div>
 
@@ -63,7 +81,7 @@ function Ticket() {
         </div>
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center w-5/6 bg-slate-300">
-            <img className="w-5/6 sm:w-3/6" src={stadium} alt="" />
+            <img className="w-5/6 sm:w-3/6 pt-3" src={stadium} alt="" />
           </div>
         </div>
 
@@ -72,13 +90,20 @@ function Ticket() {
             <div className="bg-slate-50 w-11/12 m-5 flex items-center justify-center">
               <table className="table-auto w-full">
                 <tbody className="font-semibold text-sm sm:text-base">
-                  {data.map((item) => (
-                    <tr className="flex text-center items-center justify-around p-3">
-                      <td className="w-1/4">{item.standName}</td>
-                      <td className="w-1/4">{item.capacity}</td>
-                      <td className="w-1/4">₹ {item.price}</td>
-                    </tr>
-                  ))}
+                  {data.map(
+                    (item) =>
+                      item.price !== 0 && (
+                        <tr className="flex text-center items-center justify-around p-3">
+                          <td className="w-1/4">{item.standName}</td>
+                          <td className="w-1/4">₹ {item.price}</td>
+                          <td className="w-1/4">
+                            <button className="bg-darkPurple text-white rounded-sm p-2">
+                              BOOK
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                  )}
                 </tbody>
               </table>
             </div>
@@ -155,10 +180,9 @@ function Ticket() {
           </div>
         </div>
 
-        <div>
-
-        </div>
+        <div></div>
       </div>
+      <Checkout id={id} />
     </div>
   );
 }

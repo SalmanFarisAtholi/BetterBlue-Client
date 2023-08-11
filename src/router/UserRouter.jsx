@@ -16,6 +16,7 @@ import UserFixtures from "../components/UserFixtures";
 import HeadToHead from "../components/HeadToHead";
 import Ticket from "../components/Ticket";
 import Checkout from "../components/Checkout";
+import PaymentSucces from "../components/PaymentSucces";
 function UserRouter() {
   return (
     <>
@@ -105,7 +106,17 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <Ticket />
-              <Checkout/>
+            </UserProtectedRoutes>
+          }
+        />
+          <Route
+          exact
+          
+          path="/paymentSuccess"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <PaymentSucces/>
             </UserProtectedRoutes>
           }
         />

@@ -11,23 +11,24 @@ import EditStand from "../components/EditStand";
 import Fixtures from "../components/Fixtures";
 import NotFound from "../components/NotFound";
 import AddMatch from "../components/AddMatch";
-
+import Opponents from "../components/Opponents";
+import AddOpponent from "../components/AddOpponent";
 
 function AdminRouter() {
   return (
     <div>
       <AdminSidebar>
         <Routes>
-          <Route exact path="/" element={<AdminLogin />} />
           <Route exact path="/*" element={<NotFound />} />
-
+          <Route exact path="/" element={<AdminLogin />} />
           <Route exact path="/adminside" element={<AdminHome />} />
           <Route exact path="/stadium" element={<Stadium />} />
           <Route exact path="stadium/addStadium" element={<CreateStadium />} />
           <Route exact path="fixtures/addMatch" element={<AddMatch />} />
-
-          <Route exact path="/editStand/:id" element={<EditStand/>}/>
+          <Route exact path="/editStand/:id" element={<EditStand />} />
           <Route exact path="/fixtures" element={<Fixtures />} />
+          <Route exact path="/opponent" element={<Opponents />} />
+          <Route exact path="opponent/addOpponent" element={<AddOpponent />} />
 
         </Routes>
       </AdminSidebar>

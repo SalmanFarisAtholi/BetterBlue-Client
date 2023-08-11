@@ -15,6 +15,7 @@ import {
 import { BsTicketPerforated } from "react-icons/bs";
 import { TfiGallery } from "react-icons/tfi";
 import { SlBadge } from "react-icons/sl";
+import {GiVerticalBanner} from"react-icons/gi"
 
 function AdminSidebar({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,11 @@ function AdminSidebar({ children }) {
       path: "stadium",
       name: "Stadium",
       icon: <MdStadium />,
+    },
+    {
+      path: "opponent",
+      name: "Opponent",
+      icon: <GiVerticalBanner />,
     },
     {
       path: "news",

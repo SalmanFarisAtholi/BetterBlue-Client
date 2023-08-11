@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
-import { useToaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { getStand } from "../api/adminApi";
+// import { Razorpay } from "razorpay";
+import { doPayment } from "../api/userApi";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { useAuthStore, userAuthStore } from "../store/store";
-
-const Checkout = () => {
+import { useNavigate } from "react-router-dom";
+const Checkout = (props) => {
+  const navigate = useNavigate();
+  const matchId = props.id;
+  console.log(matchId);
   const [data, setData] = useState([]);
   const [ticketType, setTicketType] = useState(false);
   const [price, setPrice] = useState(false);
@@ -26,7 +31,7 @@ const Checkout = () => {
       console.log(error);
     });
   }, []);
-  const toaster = useToaster();
+  //   const toaster = useToaster();
 
   const initialValues = {
     email: "",
@@ -36,15 +41,48 @@ const Checkout = () => {
 
   const handleSubmit = async (values) => {
     console.log(values);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    toaster.success("Checkout Successful!", {
-      position: "top-center",
+    let payment = doPayment(values, matchId);
+    toast.promise(payment, {
+      loading: "Wait",
+      // success: <b>Payment Sucsess</b>,
+      error: <b>Filed</b>,
     });
+    payment
+      .then(function (data) {
+        console.log(data);
+        let options = {
+          key: `rzp_test_NSRwAACcpYAe7D`,
+          amount: price * 100,
+          currency: "INR",
+          handler: async (response) => {
+            console.log(response);
+            if (response) {
+              setTimeout(() => {
+                navigate("/paymentSuccess");
+              }, 1000);
+            } else {
+              toast.error("Payyment Failed");
+            }
+          },
+        };
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js"; 
+        script.onload = () => {
+          console.log("hi");
+          const rzp1 = new window.Razorpay(options);
+          rzp1.open();
+        };
+        document.body.appendChild(script);
+      })
+      .then(() => {})
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
     <div className="min-h-screen bg-darkPurple flex items-center justify-center">
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="max-w-md w-full px-6 py-8 bg-slate-50 rounded-lg shadow-lg">
         <h1 className="text-3xl font-semibold text-center mb-6">
           Ticket Checkout
@@ -81,6 +119,7 @@ const Checkout = () => {
                     readOnly
                     className="w-full px-4 py-2 border rounded focus:outline-none"
                   />
+                 
                 </div>
               </div>
               <div>

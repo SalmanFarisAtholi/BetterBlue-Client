@@ -50,11 +50,7 @@ export async function addMatch(formData) {
   console.log(formData);
   try {
     if (formData) {
-      const { data } = await axios.post("/admin/addMatch", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const { data } = await axios.post("/admin/addMatch",{formData});
     } else {
       return Promise.reject({ error: "Couldn't Create Match.." });
     }
@@ -69,5 +65,29 @@ export async function getMatch() {
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Matches..." });
+  }
+}
+export async function addOpponent(formData) {
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/addOpponent", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } else {
+      return Promise.reject({ error: "Couldn't Add Opponent.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Add Opponent.." });
+  }
+}
+
+export async function getOpponent() {
+  try {
+    const { data } = await axios.get("/admin/getOpponent");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find opponents..." });
   }
 }

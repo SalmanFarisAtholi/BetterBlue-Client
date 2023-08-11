@@ -1,52 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
-import { addMatch } from "../api/adminApi";
+import { addMatch, getOpponent } from "../api/adminApi";
 import { useNavigate } from "react-router-dom";
 function AddMatch() {
-  const navigate = useNavigate();
+  const [teams, setTeams] = useState([]);
 
-  const [uploadedImage, setUploadedImage] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    let team = getOpponent();
+    team.then((data) => {
+      setTeams(data.data);
+    });
+  }, []);
+
   const [message, setMessage] = useState("");
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    console.log(selectedFile);
-    const allowedTypes = ["image/jpeg", "image/png"];
-    if (selectedFile && allowedTypes.includes(selectedFile.type)) {
-      setUploadedImage(selectedFile);
-      setMessage(null);
-    } else {
-      setUploadedImage(null);
-      setMessage("Please select a JPEG or PNG image.");
-    }
-  };
+
   const formik = useFormik({
     initialValues: {
       opponent: "",
-      // logo: "",
-      shortName: "",
       matchTime: "",
       matchType: "League",
-      totalMatch: "",
-      win: "",
-      draw: "",
-      winProbability: "",
+     
+      formhome: "",
+      formaway: "",
       home: "Estadio Radolf,Atholi",
     },
     onSubmit: async (values) => {
-      const formData = new FormData();
-      formData.append("opponent", values.opponent);
-      formData.append("logo", uploadedImage);
-      formData.append("shortName", values.shortName);
-      formData.append("matchTime", values.matchTime);
-      formData.append("matchType", values.matchType);
-      formData.append("totalMatch", values.totalMatch);
-      formData.append("win", values.win);
-      formData.append("draw", values.draw);
-      formData.append("winProbability", values.winProbability);
-      formData.append("home", values.home);
+      console.log(values);
+      // const formData = new FormData();
+      // formData.append("opponent", values.opponent);
+      // formData.append("matchTime", values.matchTime);
+      // formData.append("matchType", values.matchType);
+      // formData.append("home", values.home);
 
-      let addMatchPromise = addMatch(formData);
+      let addMatchPromise = addMatch(values);
       toast.promise(addMatchPromise, {
         loading: "Creating",
         success: <b>Match Added</b>,
@@ -76,24 +64,20 @@ function AddMatch() {
               <div className="m-5 w-6/12">
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">Opponent</label>
-                  <input
+                  <select
                     {...formik.getFieldProps("opponent")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
                     type="text"
                     required
-                  />
+                  >
+                    <option>--Select--</option>
+
+                    {teams.map((item) => (
+                      <option value={item._id}>{item.name}</option>
+                    ))}
+                  </select>
                 </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">
-                    Short Name
-                  </label>
-                  <input
-                    {...formik.getFieldProps("shortName")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="text"
-                    required
-                  />
-                </div>
+            
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
                     Match Type
@@ -109,42 +93,11 @@ function AddMatch() {
                     <option value="Friendly">Friendly</option>
                   </select>
                 </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">Win</label>
-                  <input
-                    {...formik.getFieldProps("win")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="number"
-                    required
-                  />
-                </div>
+            
 
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">
-                    Select Venue
-                  </label>
-
-                  <input
-                    {...formik.getFieldProps("home")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="text"
-                    required
-                  >
-                   
-                  </input>
-                </div>
+              
               </div>
               <div className="m-5 w-6/12">
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">Logo</label>
-                  <input
-                    onChange={handleFileChange}
-                    // {...formik.getFieldProps("logo")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm text-white"
-                    type="file"
-                    required
-                  />
-                </div>
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
                     Match Time
@@ -156,40 +109,24 @@ function AddMatch() {
                     required
                   />
                 </div>
+              
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
-                    Total Match
+                    Select Venue
                   </label>
+
                   <input
-                    {...formik.getFieldProps("totalMatch")}
+                    {...formik.getFieldProps("home")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="number"
+                    type="text"
                     required
-                  />
+                  ></input>
                 </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">Draw</label>
-                  <input
-                    {...formik.getFieldProps("draw")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="number"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-slate-200">
-                    Win Probability
-                  </label>
-                  <input
-                    {...formik.getFieldProps("winProbability")}
-                    className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
-                    type="number"
-                    required
-                  />
-                </div>
+                      
+                
+       
               </div>
             </div>
-
             <div className="flex items-center justify-center pb-3">
               <button
                 className="px-4 py-2 bg-litePurple text-white  shadow-md shadow-black hover:bg-slate-800"
