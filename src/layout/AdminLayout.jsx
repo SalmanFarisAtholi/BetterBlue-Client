@@ -1,11 +1,12 @@
-import React from 'react'
-import AdminSidebar from '../components/AdminSidebar'
+import React from "react";
+import AdminSidebar from "../components/AdminSidebar";
+import { Outlet } from "react-router-dom";
 function AdminLayout() {
   return (
-    <div>
-      
-    </div>
-  )
+      <AdminSidebar>
+        <Outlet />
+      </AdminSidebar>
+  );
 }
 
-export default AdminLayout
+export default AdminLayout;

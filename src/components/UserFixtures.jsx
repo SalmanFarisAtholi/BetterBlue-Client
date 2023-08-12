@@ -5,7 +5,7 @@ import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import { Link, useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 import { baseURL } from "../constants/constant";
-
+import Footer from "./Footer";
 function UserFixtures() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -70,6 +70,7 @@ function UserFixtures() {
           </div>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 }

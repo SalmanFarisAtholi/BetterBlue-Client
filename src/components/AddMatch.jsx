@@ -21,19 +21,12 @@ function AddMatch() {
       opponent: "",
       matchTime: "",
       matchType: "League",
-     
+
       formhome: "",
       formaway: "",
       home: "Estadio Radolf,Atholi",
     },
     onSubmit: async (values) => {
-      console.log(values);
-      // const formData = new FormData();
-      // formData.append("opponent", values.opponent);
-      // formData.append("matchTime", values.matchTime);
-      // formData.append("matchType", values.matchType);
-      // formData.append("home", values.home);
-
       let addMatchPromise = addMatch(values);
       toast.promise(addMatchPromise, {
         loading: "Creating",
@@ -77,7 +70,7 @@ function AddMatch() {
                     ))}
                   </select>
                 </div>
-            
+
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
                     Match Type
@@ -93,9 +86,6 @@ function AddMatch() {
                     <option value="Friendly">Friendly</option>
                   </select>
                 </div>
-            
-
-              
               </div>
               <div className="m-5 w-6/12">
                 <div className="mb-4">
@@ -109,7 +99,7 @@ function AddMatch() {
                     required
                   />
                 </div>
-              
+
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
                     Select Venue
@@ -122,9 +112,6 @@ function AddMatch() {
                     required
                   ></input>
                 </div>
-                      
-                
-       
               </div>
             </div>
             <div className="flex items-center justify-center pb-3">

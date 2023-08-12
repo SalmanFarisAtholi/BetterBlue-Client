@@ -158,3 +158,13 @@ export async function doPayment(values, matchId) {
     return Promise.reject({ error: "Payment Failed" });
   }
 }
+
+
+export async function getNews() {
+  try {
+    const { data } = await axios.get("/getNews");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Matches..." });
+  }
+}

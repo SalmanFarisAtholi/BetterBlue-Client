@@ -50,7 +50,7 @@ export async function addMatch(formData) {
   console.log(formData);
   try {
     if (formData) {
-      const { data } = await axios.post("/admin/addMatch",{formData});
+      const { data } = await axios.post("/admin/addMatch", { formData });
     } else {
       return Promise.reject({ error: "Couldn't Create Match.." });
     }
@@ -75,6 +75,7 @@ export async function addOpponent(formData) {
           "Content-Type": "multipart/form-data",
         },
       });
+      return Promise.resolve({ data });
     } else {
       return Promise.reject({ error: "Couldn't Add Opponent.." });
     }
@@ -89,5 +90,60 @@ export async function getOpponent() {
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Couldn't find opponents..." });
+  }
+}
+export async function addNews(formData) {
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/addNews", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return Promise.resolve({ data });
+    } else {
+      return Promise.reject({ error: "Couldn't Add news.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Create news..." });
+  }
+}
+
+export async function getNews() {
+  try {
+    const { data } = await axios.get("/admin/getNews");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Matches..." });
+  }
+}
+
+export async function addPartner(formData) {
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/addPartner", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data) {
+        return Promise.resolve({ data });
+      } else {
+        return Promise.reject({ error: "Couldn't Add Partner.." });
+      }
+    } else {
+      return Promise.reject({ error: "Couldn't Add Partner.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Create Partner..." });
+  }
+}
+
+export async function getPartner() {
+  try {
+    const { data } = await axios.get("/admin/getPartners");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't findPartners..." });
   }
 }

@@ -15,7 +15,7 @@ import {
 import { BsTicketPerforated } from "react-icons/bs";
 import { TfiGallery } from "react-icons/tfi";
 import { SlBadge } from "react-icons/sl";
-import {GiVerticalBanner} from"react-icons/gi"
+import { GiVerticalBanner } from "react-icons/gi";
 
 function AdminSidebar({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,15 +79,15 @@ function AdminSidebar({ children }) {
     <div className="flex">
       <div
         style={{ width: isOpen ? "200px" : "50px" }}
-        className="bg-darkPurple transition-all duration-500 text-white"
+        className="bg-darkPurple transition-all duration-500 text-white min-h-screen"
       >
         <div className="flex items-center py-5 px-4">
           {/* <h1 className="text-3xl"> */}
-            <img
-              style={{ display: isOpen ? "block" : "none" }}
-              src={logo}
-              className="h-6 w-6"
-            />
+          <img
+            style={{ display: isOpen ? "block" : "none" }}
+            src={logo}
+            className="h-6 w-6"
+          />
           {/* </h1> */}
           <div
             style={{ marginLeft: isOpen ? "50px" : "-5px" }}
