@@ -147,3 +147,49 @@ export async function getPartner() {
     return Promise.reject({ error: "Couldn't findPartners..." });
   }
 }
+
+export async function getPlayer() {
+  try {
+    const { data } = await axios.get("/admin/getPlayer");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Player..." });
+  }
+}
+
+
+export async function addPlayer(formData) {
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/addPlayer", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data) {
+        return Promise.resolve({ data });
+      } else {
+        return Promise.reject({ error: "Couldn't Add Partner.." });
+      }
+    } else {
+      return Promise.reject({ error: "Couldn't Add Partner.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Create Partner..." });
+  }
+}
+
+export async function addResult(values,goals) {
+  console.log(values);
+  console.log(goals);
+
+  try {
+    if (values) {
+      const { data } = await axios.post("/admin/addResult", { values,goals });
+    } else {
+      return Promise.reject({ error: "Couldn't Add Result.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Add Result.." });
+  }
+}

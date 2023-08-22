@@ -17,6 +17,8 @@ import HeadToHead from "../components/HeadToHead";
 import Ticket from "../components/Ticket";
 import Checkout from "../components/Checkout";
 import PaymentSucces from "../components/PaymentSucces";
+import Sponsor from "../components/Sponsor";
+import News from "../components/News";
 function UserRouter() {
   return (
     <>
@@ -120,6 +122,27 @@ function UserRouter() {
             </UserProtectedRoutes>
           }
         />
+          <Route
+          exact
+          
+          path="/news"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <News/>
+            </UserProtectedRoutes>
+          }
+        />  <Route
+        exact
+        
+        path="/sponsors"
+        element={
+          <UserProtectedRoutes>
+            <UserNavbar />
+            <Sponsor/>
+          </UserProtectedRoutes>
+        }
+      />
        
       </Routes>
     </>

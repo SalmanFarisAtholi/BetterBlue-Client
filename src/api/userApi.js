@@ -150,15 +150,23 @@ export async function getOneMatch(id) {
   }
 }
 
-export async function doPayment(values, matchId) {
+export async function doPayment(values, matchId,total,stand) {
   try {
-    const { data } = await axios.post(`/doPayment`,{values,matchId});
+    const { data } = await axios.post(`/doPayment`,{values,matchId,total,stand});
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Payment Failed" });
   }
 }
+export async function verifyPayment(response,newData){
+  try {
+    const { data } = await axios.post(`/verifyPayment`,{response,newData});
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Payment Veification Failed" });
 
+  }
+}
 
 export async function getNews() {
   try {
@@ -166,5 +174,21 @@ export async function getNews() {
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Matches..." });
+  }
+}
+export async function getPartner() {
+  try {
+    const { data } = await axios.get("/getPartner");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find partner..." });
+  }
+}
+export async function getPlayer() {
+  try {
+    const { data } = await axios.get("/getPlayer");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Player..." });
   }
 }

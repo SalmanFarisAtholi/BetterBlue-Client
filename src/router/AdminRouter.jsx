@@ -18,6 +18,10 @@ import AdminNews from "../components/AdminNews";
 import CreateNews from "../components/CreateNews";
 import PartnerManage from "../components/PartnerManage";
 import AddPartner from "../components/AddPartner";
+import PlayerManage from "../components/PlayerManage";
+import AddPlayer from "../components/AddPlayer";
+import ResultManage from "../components/ResultManage";
+import AddResult from "../components/AddResult";
 
 function AdminRouter() {
   return (
@@ -37,11 +41,15 @@ function AdminRouter() {
           <Route exact path="opponent/addOpponent" element={<AddOpponent />} />
           <Route exact path="/sponsor" element={<PartnerManage />} />
           <Route exact path="sponsor/addSponsor" element={<AddPartner />} />
+          <Route exact path="/players" element={<PlayerManage />} />
+          <Route exact path="players/addPlayer" element={<AddPlayer />} />
+          <Route exact path="/results" element={<ResultManage />} />
+          <Route exact path="results/addResult" element={<AddResult />} />
         </Route>
         <Route exact path="/" element={<AdminLogin />} />
       </Routes>
     </div>
-  ); 
+  );
 }
 
 export default AdminRouter;

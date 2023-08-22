@@ -3,7 +3,9 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import { toast, Toaster } from "react-hot-toast";
 import { getStand } from "../api/adminApi";
 // import { Razorpay } from "razorpay";
-import { doPayment } from "../api/userApi";
+import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
+
+import { doPayment, verifyPayment } from "../api/userApi";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { useAuthStore, userAuthStore } from "../store/store";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,7 @@ const Checkout = (props) => {
   console.log(matchId);
   const [data, setData] = useState([]);
   const [ticketType, setTicketType] = useState(false);
+  const [seat, setSeat] = useState("");
   const [price, setPrice] = useState(false);
   const { user } = useAuthStore((state) => state.auth);
 
@@ -21,6 +24,7 @@ const Checkout = (props) => {
   const handleTicketTypeChange = (e) => {
     const stand = e.target.value.split(",");
     setTicketType(stand[1]);
+    setSeat(stand[0]);
   };
   useEffect(() => {
     let Data = getStand();
@@ -34,41 +38,45 @@ const Checkout = (props) => {
   //   const toaster = useToaster();
 
   const initialValues = {
-    email: "",
-    ticketType: "standard",
+    email: user,
+    // ticketType: "",
     members: [{ name: "", mobileNumber: "" }],
+    // total: "",
   };
 
   const handleSubmit = async (values) => {
-    console.log(values);
-    let payment = doPayment(values, matchId);
-    toast.promise(payment, {
-      loading: "Wait",
-      // success: <b>Payment Sucsess</b>,
-      error: <b>Filed</b>,
-    });
+    let payment = doPayment(values, matchId, price, seat);
     payment
       .then(function (data) {
-        console.log(data);
+        const newData = data.data;
+        console.log(newData);
         let options = {
           key: `rzp_test_NSRwAACcpYAe7D`,
-          amount: price * 100,
+          amount: newData.response.amount,
           currency: "INR",
+          name: "Better Blue FC",
           handler: async (response) => {
-            console.log(response);
-            if (response) {
-              setTimeout(() => {
-                navigate("/paymentSuccess");
-              }, 1000);
-            } else {
-              toast.error("Payyment Failed");
-            }
+            verifyPayment(response,newData).catch((result)=>{
+              console.log(result);
+            })
+            // alert(response.razorpay_payment_id);
+            // alert(response.razorpay_order_id);
+            // alert(response.razorpay_signature);
+            // if (response) {
+            //   setTimeout(() => {
+            //     navigate("/paymentSuccess");
+            //   }, 1000);
+            // } else {
+            //   toast.error("Payyment Failed");
+            // }
+          },
+          theme: {
+            color: "#17356C",
           },
         };
         const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/checkout.js"; 
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
         script.onload = () => {
-          console.log("hi");
           const rzp1 = new window.Razorpay(options);
           rzp1.open();
         };
@@ -96,7 +104,7 @@ const Checkout = (props) => {
                     Ticket Type:
                   </label>
                   <select
-                    defaultValue="none"
+                    defaultValue={values.ticketType}
                     name="ticketType"
                     onChange={handleTicketTypeChange}
                     className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
@@ -119,7 +127,6 @@ const Checkout = (props) => {
                     readOnly
                     className="w-full px-4 py-2 border rounded focus:outline-none"
                   />
-                 
                 </div>
               </div>
               <div>
@@ -129,6 +136,7 @@ const Checkout = (props) => {
                   value={values.email}
                   required
                   type="email"
+                  // readOnly
                   className="w-full px-4 py-2 border rounded focus:outline-none"
                 />
               </div>

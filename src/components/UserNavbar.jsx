@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 function UserNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [dropdown, setDropdown] = useState(false);
-  const toggledropdown = () => {
-    setDropdown(!dropdown);
-  };
+ 
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
+  };
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -21,56 +23,42 @@ function UserNavbar() {
           <div className="hidden md:block">
             <div className="flex items-center justify-evenly">
               <div className="flex items-center justify-evenly">
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                  <Link to={"/home"}>Home</Link> 
+                    <Link to={"/home"}>Home</Link>
                   </p>
                 </a>
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    Team
                     <span>
-                      <div className="dropdown relative inline-block">
-                        <button onClick={toggledropdown} className="dropbtn">
-                          +
-                        </button>
-                        {/* <div className="`${toggledropdown?}`">
-                          <a className="p-3 table hover:bg-slate-500" href="#">
-                            Link 1
-                          </a>
-                          <a className="p-3 table hover:bg-slate-500" href="#">
-                            Link 1
-                          </a>
-                        </div> */}
+                      <div className="dropdown">
+                        <li
+                          className=""
+                          onMouseEnter={toggleDropdown}
+                          onMouseLeave={toggleDropdown}
+                        >
+                          <a >Pages</a>
+                          {isDropdownOpen && (
+                            <div className="dropdown-content absolute bg-darkPurple rounded-md p-1">
+                              <div className="hover:bg-white p-2 hover:text-black ">
+                                <Link to={"/news"}>News</Link>
+
+                              </div>
+                              <div className="hover:bg-white p-2 hover:text-black">
+                              <Link to={"/sponsors"}>Sponsors</Link>
+                              </div>
+                              {/* <div>
+                                <a >Option 2</a>
+                              </div> */}
+                            </div>
+                          )}
+                        </li>
                       </div>
                     </span>
-                    {/* <span>
-                      <div className="relative inline-block text-left">
-                        <div className="group">
-                          <button className="text-gray-300 bg-darkPurple">
-                            +
-                          </button>
-
-                          <div className="absolute right-0 mt-2 hidden bg-darkPurple rounded-md shadow-lg group-hover:block">
-                            <a  
-                              href="#"
-                              className="block px-4 py-2 text-slate-100 hover:bg-gray-200"
-                            >
-                              Option
-                            </a>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-slate-100 hover:bg-gray-200"
-                            >
-                              Option
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </span> */}
+                  
                   </p>
                 </a>
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     About Us
                   </p>
@@ -80,17 +68,17 @@ function UserNavbar() {
                 <img src={logo} alt="" />
               </div>
               <div className="flex items-center justify-evenly">
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                   <Link to={"/fixtures"}>Fixtures</Link> 
+                    <Link to={"/fixtures"}>Fixtures</Link>
                   </p>
                 </a>
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                  <Link to={"/profile"}>Profile</Link> 
+                    <Link to={"/profile"}>Profile</Link>
                   </p>
                 </a>
-                <a href="#" className="px-14 py-2">
+                <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     Ticket
                   </p>
@@ -138,7 +126,6 @@ function UserNavbar() {
       <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a
-            href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Home
@@ -150,7 +137,6 @@ function UserNavbar() {
             About
           </a>
           <a
-            href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Services

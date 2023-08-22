@@ -17,6 +17,8 @@ function AddOpponent() {
     } else {
       setUploadedImage(null);
       setMessage("Please select a JPEG or PNG image.");
+      toast.error(message)
+
     }
   };
   const formik = useFormik({

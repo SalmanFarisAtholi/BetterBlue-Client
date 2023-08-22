@@ -44,7 +44,17 @@ function AddMatch() {
         });
     },
   });
+  const now = new Date();
+        
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+  
   return (
+    
     <div className="flex items-center justify-center min-h-screen bg-litePurple ">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="w-4/5 h-2/3  bg-darkPurple my-24 shadow-md shadow-black ">
@@ -96,9 +106,11 @@ function AddMatch() {
                     {...formik.getFieldProps("matchTime")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm"
                     type="datetime-local"
+                    min={formattedDateTime}
                     required
                   />
                 </div>
+                
 
                 <div className="mb-4">
                   <label className="block mb-2 text-slate-200">
