@@ -25,7 +25,7 @@ function AddResult() {
     setGoals(updatedGoals);
   };
   useEffect(() => {
-    let team = getMatch();
+    let team = getMatch()
     team.then((data) => {
       setMatch(data.data);
     });

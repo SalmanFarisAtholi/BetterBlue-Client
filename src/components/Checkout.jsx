@@ -56,19 +56,20 @@ const Checkout = (props) => {
           currency: "INR",
           name: "Better Blue FC",
           handler: async (response) => {
-            verifyPayment(response,newData).catch((result)=>{
-              console.log(result);
-            })
-            // alert(response.razorpay_payment_id);
-            // alert(response.razorpay_order_id);
-            // alert(response.razorpay_signature);
-            // if (response) {
-            //   setTimeout(() => {
-            //     navigate("/paymentSuccess");
-            //   }, 1000);
-            // } else {
-            //   toast.error("Payyment Failed");
-            // }
+            verifyPayment(response, newData)
+              .then((status) => {
+                console.log(status);
+                if (status) {
+                  setTimeout(() => {
+                    navigate("/paymentSuccess");
+                  }, 1000);
+                } else {
+                  toast.error("Payyment Failed");
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           },
           theme: {
             color: "#17356C",
