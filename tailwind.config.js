@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         darkPurple: "#060F21",
         litePurple: "#17356C",
+        glassy:"#0B1933",
         lightwhite: "rgba(255,255,255,0.17)",
       },
       backgroundImage: {

@@ -10,6 +10,8 @@ import SignUp from "../components/SignUp";
 import Login from "../components/Login";
 // import Reset from "./components/Reset";
 import Otp from "../components/Otp";
+import OnePlayer from "../components/OnePlayer";
+
 import UserHome from "../components/UserHome";
 import UserNavbar from "../components/UserNavbar";
 import UserFixtures from "../components/UserFixtures";
@@ -19,6 +21,9 @@ import Checkout from "../components/Checkout";
 import PaymentSucces from "../components/PaymentSucces";
 import Sponsor from "../components/Sponsor";
 import News from "../components/News";
+import Results from "../components/Results";
+import About from "../components/About";
+import PlayerAndStaff from "../components/PlayerAndStaff";
 function UserRouter() {
   return (
     <>
@@ -41,14 +46,13 @@ function UserRouter() {
             </UserPubllicRoute>
           }
         />
-
         <Route exact path="/*" element={<NotFound />} />
         <Route
           exact
           path="/profile"
           element={
             <UserProtectedRoutes>
-              <UserNavbar/>
+              <UserNavbar />
               <Profile />
             </UserProtectedRoutes>
           }
@@ -111,39 +115,76 @@ function UserRouter() {
             </UserProtectedRoutes>
           }
         />
-          <Route
+        <Route
           exact
-          
           path="/paymentSuccess"
           element={
             <UserProtectedRoutes>
               <UserNavbar />
-              <PaymentSucces/>
+              <PaymentSucces />
             </UserProtectedRoutes>
           }
         />
-          <Route
+        <Route
           exact
-          
           path="/news"
           element={
             <UserProtectedRoutes>
               <UserNavbar />
-              <News/>
+              <News />
             </UserProtectedRoutes>
           }
-        />  <Route
-        exact
-        
-        path="/sponsors"
-        element={
-          <UserProtectedRoutes>
-            <UserNavbar />
-            <Sponsor/>
-          </UserProtectedRoutes>
-        }
-      />
-       
+        />
+        <Route
+          exact
+          path="/results"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <Results />
+            </UserProtectedRoutes>
+          }
+        />{" "}
+        <Route
+          exact
+          path="/players"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <PlayerAndStaff />
+            </UserProtectedRoutes>
+          }
+        />
+        <Route
+          exact
+          path="/about"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <About />
+            </UserProtectedRoutes>
+          }
+        />
+        <Route
+          exact
+          path="/sponsors"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <Sponsor />
+            </UserProtectedRoutes>
+          }
+        />{" "}
+        <Route
+          exact
+          path="/getOnePlayer/:id"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <OnePlayer />
+            </UserProtectedRoutes>
+          }
+        />
       </Routes>
     </>
   );

@@ -17,8 +17,7 @@ function AddOpponent() {
     } else {
       setUploadedImage(null);
       setMessage("Please select a JPEG or PNG image.");
-      toast.error(message)
-
+      toast.error(message);
     }
   };
   const formik = useFormik({
@@ -104,6 +103,7 @@ function AddOpponent() {
                   <input
                     onChange={handleFileChange}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm text-white"
+                    accept=".jpg, .jpeg, .png"
                     type="file"
                     required
                   />

@@ -44,7 +44,7 @@ function Stadium() {
       <div className="flex items-center justify-center">
         <div className="w-5/6 bg-slate-300 flex items-center justify-center">
           <button className="bg-darkPurple text-rose-50 font-bold rounded-sm w-24 h-14 hover:bg-litePurple drop-shadow-2xl ">
-            <Link to="addStadium">ADD</Link>
+            <Link  to="addStadium">ADD</Link>
           </button>
         </div>
       </div>

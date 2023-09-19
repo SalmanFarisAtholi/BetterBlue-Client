@@ -16,6 +16,11 @@ function UserNavbar() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+   const [secoundDropdown,setSecoundDropdown]=useState(false)
+   const toggleSecoundDropdown = () => {
+    setSecoundDropdown(!secoundDropdown);
+  };
+
   return (
     <nav className="bg-darkPurple">
       <div className="w-full">
@@ -32,14 +37,18 @@ function UserNavbar() {
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     <span>
                       <div className="dropdown">
-                        <li
+                        <ul
                           className=""
                           onMouseEnter={toggleDropdown}
                           onMouseLeave={toggleDropdown}
                         >
-                          <a >Pages</a>
+                          <a className="hover:cursor-pointer">Pages</a>
                           {isDropdownOpen && (
                             <div className="dropdown-content absolute bg-darkPurple rounded-md p-1">
+                               <div className="hover:bg-white p-2 hover:text-black ">
+                                <Link to={"/players"}>Players</Link>
+
+                              </div>
                               <div className="hover:bg-white p-2 hover:text-black ">
                                 <Link to={"/news"}>News</Link>
 
@@ -47,12 +56,10 @@ function UserNavbar() {
                               <div className="hover:bg-white p-2 hover:text-black">
                               <Link to={"/sponsors"}>Sponsors</Link>
                               </div>
-                              {/* <div>
-                                <a >Option 2</a>
-                              </div> */}
+                             
                             </div>
                           )}
-                        </li>
+                        </ul>
                       </div>
                     </span>
                   
@@ -60,7 +67,9 @@ function UserNavbar() {
                 </a>
                 <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    About Us
+                  <Link to={"/about"}> About Us</Link>
+
+                   
                   </p>
                 </a>
               </div>
@@ -70,7 +79,29 @@ function UserNavbar() {
               <div className="flex items-center justify-evenly">
                 <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    <Link to={"/fixtures"}>Fixtures</Link>
+                    <span>
+                      <div className="dropdown">
+                        <ul
+                          className=""
+                          onMouseEnter={toggleSecoundDropdown}
+                          onMouseLeave={toggleSecoundDropdown}
+                        >
+                          <a className="hover:cursor-pointer">Matches</a>
+                          {secoundDropdown && (
+                            <div className="dropdown-content absolute bg-darkPurple rounded-md p-1">
+                              <div className="hover:bg-white p-2 hover:text-black ">
+                              <Link to={"/fixtures"}>Fixtures</Link>
+
+                              </div>
+                              <div className="hover:bg-white p-2 hover:text-black">
+                              <Link to={"/results"}>Results</Link>
+                              </div>
+                             
+                            </div>
+                          )}
+                        </ul>
+                      </div>
+                    </span>
                   </p>
                 </a>
                 <a  className="px-14 py-2">
@@ -80,7 +111,7 @@ function UserNavbar() {
                 </a>
                 <a  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
-                    Ticket
+                  <Link to={"/ticket"}>Ticket</Link>
                   </p>
                 </a>
               </div>

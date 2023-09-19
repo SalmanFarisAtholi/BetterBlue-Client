@@ -136,6 +136,7 @@ function AddPlayer() {
                   <input
                     onChange={handleFileChange}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-sm text-white"
+                    accept=".jpg, .jpeg, .png"
                     type="file"
                     required
                   />

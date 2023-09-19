@@ -1,59 +1,84 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthStore, userAuthStore } from "../store/store";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
+import { getUser } from "../api/userApi";
 import { useFormik } from "formik";
-import{BsPerson} from "react-icons/bs"
+import { BsPerson } from "react-icons/bs";
 
 export default function Profile() {
   const { user } = useAuthStore((state) => state.auth);
 
   console.log(user);
   const navigate = useNavigate();
-
+  const [userData, setUserData] = useState();
+  useEffect(() => {
+    let Data = getUser(user);
+    Data.then((data) => {
+      setUserData(data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
   function userLogout() {
     localStorage.removeItem("token");
     navigate("/");
   }
-  const formik = useFormik({
-    initialValues: {
-      email:user,
-      password: "",
-      firstname: "",
-      cpassword: "",
-      lastname: "",
-      mobile: "",
-      city: "",
-      country: "",
-    },
-    validateOnBlur: false,
-    validateOnChange: false,
-    onSubmit: async (values) => {
-      console.log(values);
-      // let registerPromise = registerUser(values);
-      // toast.promise(registerPromise, {
-      //   loading: "Creating",
-      //   success: <b>Register Success</b>,
-      //   error: <b>Cant register</b>,
-      // });
-      // registerPromise.then(function () {
-      //   console.log("hi");
-      // });
-    },
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email:user,
+  //     password: "",
+  //     firstname: "",
+  //     cpassword: "",
+  //     lastname: "",
+  //     mobile: "",
+  //     city: "",
+  //     country: "",
+  //   },
+  //   validateOnBlur: false,
+  //   validateOnChange: false,
+  //   onSubmit: async (values) => {
+  //     console.log(values);
+  //     // let registerPromise = registerUser(values);
+  //     // toast.promise(registerPromise, {
+  //     //   loading: "Creating",
+  //     //   success: <b>Register Success</b>,
+  //     //   error: <b>Cant register</b>,
+  //     // });
+  //     // registerPromise.then(function () {
+  //     //   console.log("hi");
+  //     // });
+  //   },
+  // });
   return (
-    <div className="flex items-center justify-center min-h-screen bg-darkPurple ">
+    <div className="flex items-center justify-center h-screen bg-darkPurple ">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className="w-4/5 h-2/3  bg-darkPurple ">
+      <div className="w-4/5 bg-litePurple mb-52">
         <div className="text-center py-2">
-          <h1 className="text-2xl  font-bold text-slate-100 mb-4">
-            Profile
-          </h1>
+          <h1 className="text-2xl  font-bold text-slate-100 mb-4">Profile</h1>
         </div>
-        <div className="flex items-center justify-center h-24 w-full">
-          <BsPerson className="h-full w-full"/>
+       
+        <div className="flex items-center justify-evenly p-7">
+        <div className="flex items-center justify-center h-24">
+          <BsPerson className="h-full w-full" />
         </div>
-        <div className="flex items-center justify-evenly ">
+          <div className="text-center text-white">
+            <h2 className="uppercase">{userData?.firstName} {userData?.lastName}</h2>
+            <p>{userData?.email}</p>
+            <p>{userData?.city}</p>
+            <p>{userData?.country}</p>
+
+            <p>{userData?.phone}</p>
+
+          </div>
+        </div>
+        <div className="text-center py-2">
+          <h3 className="text-1xl text-slate-100 mb-4">
+            <button className="bg-darkPurple p-3 hover:shadow-xl" onClick={userLogout}>Log Out</button>
+          </h3>
+        </div>
+
+        {/* <div className="flex items-center justify-evenly ">
           <form onSubmit={formik.handleSubmit}>
             <div className="md:flex sm:flex items-center justify-center">
               <div className="m-5 w-6/12">
@@ -155,7 +180,7 @@ export default function Profile() {
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

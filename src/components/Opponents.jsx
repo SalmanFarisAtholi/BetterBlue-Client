@@ -31,7 +31,9 @@ function Opponents() {
           <div className="flex items-center justify-center">
             <div className="w-40">
               <h1 className="font-bold text-lg">{item.name}</h1>
-              <h1 className="font-bold text-lg text-slate-400">{item.shortName}</h1>
+              <h1 className="font-bold text-lg text-slate-400">
+                {item.shortName}
+              </h1>
             </div>
           </div>
           <div className="flex items-center justify-center">
@@ -62,6 +64,15 @@ function Opponents() {
               <h1 className="text-6xl font-bold text-red-600">
                 {item.totalMatch - item.win - item.draw}
               </h1>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <div>
+              <button
+                className="w-10 sm:w-12 rounded bg-amber-600"
+              >
+                <Link to={`editOpponent/${item._id}`}>EDIT</Link>
+              </button>
             </div>
           </div>
         </div>

@@ -64,11 +64,11 @@ function AdminSidebar({ children }) {
       name: "Tickets",
       icon: <BsTicketPerforated />,
     },
-    {
-      path: "gallary",
-      name: "Gallary",
-      icon: <TfiGallery />,
-    },
+    // {
+    //   path: "gallary",
+    //   name: "Gallary",
+    //   icon: <TfiGallery />,
+    // },
     {
       path: "sponsor",
       name: "Sponsor",

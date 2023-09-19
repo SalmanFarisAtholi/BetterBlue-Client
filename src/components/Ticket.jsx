@@ -87,9 +87,9 @@ function Ticket() {
 
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center w-5/6 bg-slate-300">
-            <div className="bg-slate-50 w-11/12 m-5 flex items-center justify-center">
+            <div className="bg-slate-50 w-1/2 m-5 flex items-center justify-center">
               <table className="table-auto w-full">
-                <tbody className="font-semibold text-sm sm:text-base">
+                {/* <tbody className="font-semibold text-sm sm:text-base">
                   {data.map(
                     (item) =>
                       item.price !== 0 && (
@@ -101,6 +101,22 @@ function Ticket() {
                               BOOK
                             </button>
                           </td>
+                        </tr>
+                      )
+                  )}
+                </tbody> */}
+                <tbody className="font-semibold text-sm sm:text-base">
+                  {data.map(
+                    (item) =>
+                      item.price !== 0 && (
+                        <tr className="flex text-center items-center justify-around p-3">
+                          <td className="w-1/4">{item.standName}</td>
+                          <td className="w-1/4">₹ {item.price}</td>
+                          {/* <td className="w-1/4">
+                            <button className="bg-darkPurple text-white rounded-sm p-2">
+                              BOOK
+                            </button>
+                          </td> */}
                         </tr>
                       )
                   )}
@@ -122,63 +138,7 @@ function Ticket() {
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-center text-center pb-9">
-          <div className="bg-litePurple w-5/6 p-5 rounded-xl ">
-            <h1 className="font-bold text-5xl">Stadium Rules</h1>
-            <div className="text-slate-200 mt-8 leading-loose font-sans flex justify-center text-start">
-              <ol className="list-decimal pl-6">
-                <li>
-                  No Smoking: Smoking is not allowed in the stadium seating
-                  areas.
-                </li>
-                <li>
-                  No Outside Food and Beverages: Please do not bring outside
-                  food or drinks into the stadium.
-                </li>
-                <li>
-                  Security Checks: Be prepared for bag checks and metal detector
-                  screenings at the entrance.
-                </li>
-                <li>
-                  No Weapons or Dangerous Items: Weapons and any dangerous items
-                  are strictly prohibited.
-                </li>
-                <li>
-                  Alcohol Policies: Consume alcohol only in designated areas and
-                  adhere to age restrictions.
-                </li>
-                <li>
-                  No Unauthorized Recording Devices: Do not use cameras or
-                  recording devices without permission.
-                </li>
-                <li>
-                  Stay in Designated Areas: Respect restricted access areas and
-                  stay in your designated seats or sections.
-                </li>
-                <li>
-                  Respect Other Fans: Be courteous to fellow fans, players, and
-                  stadium staff.
-                </li>
-                <li>
-                  No Reentry: Once you leave the stadium, reentry may not be
-                  allowed.
-                </li>
-                <li>
-                  Follow Emergency Procedures: Familiarize yourself with
-                  emergency procedures and exit routes.
-                </li>
-                <li>
-                  Respect the Venue: Avoid damaging or defacing stadium property
-                  or facilities.
-                </li>
-                <li>
-                  Prohibited Items: Check for a list of prohibited items such as
-                  large bags, umbrellas, etc.
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
+     
 
         <div></div>
       </div>

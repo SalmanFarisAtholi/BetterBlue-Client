@@ -23,7 +23,7 @@ export async function authenticate(email) {
 }
 
 /** get User details */
-export async function getUser({ email }) {
+export async function getUser(email ) {
   try {
     const { data } = await axios.get(`/user/${email}`);
     return { data };
@@ -139,6 +139,15 @@ export async function getMatch() {
     return Promise.reject({ error: "Couldn't find Matches..." });
   }
 }
+export async function getResult() {
+  try {
+    const { data } = await axios.get("/getResult");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Results..." });
+  }
+}
+
 
 export async function getOneMatch(id) {
   console.log(id);
@@ -149,6 +158,16 @@ export async function getOneMatch(id) {
     return Promise.reject({ error: "Couldn't find Match Deatiles..." });
   }
 }
+export async function getOnePlayer(id) {
+  console.log(id);
+  try {
+    const { data } = await axios.get(`/getOnePlayer/${id}`);
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Player Deatiles..." });
+  }
+}
+
 
 export async function doPayment(values, matchId,total,stand) {
   try {

@@ -83,13 +83,36 @@ export async function addOpponent(formData) {
     return Promise.reject({ error: "Couldn't Add Opponent.." });
   }
 }
-
+export async function editOpponent(formData) {
+  try {
+    if (formData) {
+      const { data } = await axios.post("/admin/editOpponent", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return Promise.resolve({ data });
+    } else {
+      return Promise.reject({ error: "Couldn't Edit Opponent.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't Edit Opponent.." });
+  }
+}
 export async function getOpponent() {
   try {
     const { data } = await axios.get("/admin/getOpponent");
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Couldn't find opponents..." });
+  }
+}
+export async function getOneOpponent(id) {
+  try {
+    const { data } = await axios.get(`/admin/getOneOpponent/${id}`);
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find opponent..." });
   }
 }
 export async function addNews(formData) {
@@ -156,6 +179,14 @@ export async function getPlayer() {
     return Promise.reject({ error: "Couldn't find Player..." });
   }
 }
+export async function getResult() {
+  try {
+    const { data } = await axios.get("/admin/getResult");
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find Results..." });
+  }
+}
 
 
 export async function addPlayer(formData) {
@@ -180,8 +211,7 @@ export async function addPlayer(formData) {
 }
 
 export async function addResult(values,goals) {
-  console.log(values);
-  console.log(goals);
+
 
   try {
     if (values) {
