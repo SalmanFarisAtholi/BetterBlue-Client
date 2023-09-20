@@ -33,7 +33,7 @@ function PlayerAndStaff() {
                   <div className="flex justify-center items-center">
                     <img
                       className="h-80 w-5/6 "
-                      src={`${baseURL}/${item.photo}`}
+                      src={`${baseURL}/${item.photo}`} alt=""
                     />
                   </div>
                   <div className="">

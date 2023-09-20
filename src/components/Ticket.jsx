@@ -34,7 +34,7 @@ function Ticket() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
   return (
     <div>
       <div

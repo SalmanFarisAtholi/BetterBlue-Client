@@ -85,7 +85,8 @@ function AdminSidebar({ children }) {
           {/* <h1 className="text-3xl"> */}
           <img
             style={{ display: isOpen ? "block" : "none" }}
-            src={logo}
+            src={logo} 
+            alt=""
             className="h-6 w-6"
           />
           {/* </h1> */}

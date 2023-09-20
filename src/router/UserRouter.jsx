@@ -11,13 +11,12 @@ import Login from "../components/Login";
 // import Reset from "./components/Reset";
 import Otp from "../components/Otp";
 import OnePlayer from "../components/OnePlayer";
-
 import UserHome from "../components/UserHome";
 import UserNavbar from "../components/UserNavbar";
 import UserFixtures from "../components/UserFixtures";
 import HeadToHead from "../components/HeadToHead";
 import Ticket from "../components/Ticket";
-import Checkout from "../components/Checkout";
+// import Checkout from "../components/Checkout";
 import PaymentSucces from "../components/PaymentSucces";
 import Sponsor from "../components/Sponsor";
 import News from "../components/News";

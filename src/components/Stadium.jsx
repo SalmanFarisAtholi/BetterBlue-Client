@@ -6,7 +6,7 @@ import { useState } from "react";
 import { getStand } from "../api/adminApi";
 function Stadium() {
   const [data, setData] = useState([]);
-  const [id, setId] = useState('');
+  // const [id, setId] = useState('');
 
   useEffect(() => {
     let Data = getStand();

@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-// import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 // import { useAuthStore } from "../store/store";
 import {  verifyOTP } from "../api/userApi";
 // import styles from '../styles/Username.module.css';
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 function Otp() {
   // const { username } = useAuthStore((state) => state.auth);
   //   console.log(username);
-  const [OTP, setOTP] = useState(793261);
+  const OTP= useState(793261);
   const navigate = useNavigate();
 
   //   useEffect(() => {

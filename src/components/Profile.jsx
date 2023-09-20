@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuthStore, userAuthStore } from "../store/store";
+import { useAuthStore } from "../store/store";
 import {  useNavigate } from "react-router-dom";
 import {  Toaster } from "react-hot-toast";
 import { getUser } from "../api/userApi";
@@ -19,7 +19,7 @@ export default function Profile() {
     }).catch((error) => {
       console.log(error);
     });
-  }, []);
+  }, [user]);
   function userLogout() {
     localStorage.removeItem("token");
     navigate("/");
