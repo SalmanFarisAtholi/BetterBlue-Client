@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import banner from "../assets/banners/Partner.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { baseURL } from "../constants/constant";
-import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
+// import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import { getPartner } from "../api/userApi";
 
 function Sponsor() {

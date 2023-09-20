@@ -5,8 +5,8 @@ import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { loginValidate } from "../helper/validate";
 import { useAuthStore } from "../store/store";
-import useFetch from "../hooks/fetch.hook";
-import { useEffect, useState } from "react";
+// import useFetch from "../hooks/fetch.hook";
+// import { useEffect, useState } from "react";
 import { verifyPassword } from "../api/userApi";
 
 export default function Login() {

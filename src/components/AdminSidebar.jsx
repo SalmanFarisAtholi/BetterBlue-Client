@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../styles/sidebar.css";
 import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
@@ -13,7 +13,7 @@ import {
   TbPlayerTrackPrev,
 } from "react-icons/tb";
 import { BsTicketPerforated } from "react-icons/bs";
-import { TfiGallery } from "react-icons/tfi";
+// import { TfiGallery } from "react-icons/tfi";
 import { SlBadge } from "react-icons/sl";
 import { GiVerticalBanner } from "react-icons/gi";
 

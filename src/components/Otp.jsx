@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React, {  useState } from "react";
+// import toast, { Toaster } from "react-hot-toast";
 // import { useAuthStore } from "../store/store";
 import {  verifyOTP } from "../api/userApi";
 // import styles from '../styles/Username.module.css';

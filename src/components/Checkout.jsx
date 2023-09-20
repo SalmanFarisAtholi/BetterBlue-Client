@@ -5,7 +5,7 @@ import { getStand } from "../api/adminApi";
 
 import { doPayment, verifyPayment } from "../api/userApi";
 import { BsFillPersonPlusFill } from "react-icons/bs";
-import { useAuthStore, userAuthStore } from "../store/store";
+import { useAuthStore } from "../store/store";
 import { useNavigate } from "react-router-dom";
 const Checkout = (props) => {
   const navigate = useNavigate();

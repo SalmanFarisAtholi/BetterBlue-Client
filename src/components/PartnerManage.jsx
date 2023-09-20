@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import test from "../assets/News/tedlesso.png";
+import { Link } from "react-router-dom";
+// import test from "../assets/News/tedlesso.png";
 import { getPartner } from "../api/adminApi";
 import { baseURL } from "../constants/constant";
 function PartnerManage() {

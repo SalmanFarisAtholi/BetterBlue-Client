@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import stadium from "../assets/Stadium/My project-1.png";
-import { Link, useNavigate } from "react-router-dom";
-import Modal from "./Modal";
+import { Link } from "react-router-dom";
+// import Modal from "./Modal";
 import { useState } from "react";
-import { getStand, editStand } from "../api/adminApi";
+import { getStand } from "../api/adminApi";
 function Stadium() {
   const [data, setData] = useState([]);
   const [id, setId] = useState('');

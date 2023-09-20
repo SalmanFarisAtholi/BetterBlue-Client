@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useAuthStore, userAuthStore } from "../store/store";
-import { Link, useNavigate } from "react-router-dom";
-import { toast, Toaster } from "react-hot-toast";
+import {  useNavigate } from "react-router-dom";
+import {  Toaster } from "react-hot-toast";
 import { getUser } from "../api/userApi";
-import { useFormik } from "formik";
+// import { useFormik } from "formik";
 import { BsPerson } from "react-icons/bs";
 
 export default function Profile() {

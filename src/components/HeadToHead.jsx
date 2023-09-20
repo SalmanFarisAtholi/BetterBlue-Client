@@ -3,9 +3,7 @@ import banner from "../assets/banners/headtohead1.png";
 import vs from "../assets/banners/vs.png";
 import {
   Link,
-  useNavigate,
   useParams,
-  useSearchParams,
 } from "react-router-dom";
 import { getOneMatch } from "../api/userApi";
 import { baseURL } from "../constants/constant";

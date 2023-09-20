@@ -3,13 +3,13 @@ import banner from "../assets/banners/ticket.png";
 import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import vs from "../assets/banners/vs2.png";
 import stadium from "../assets/Stadium/My project-1.png";
-import { getStand, editStand } from "../api/adminApi";
+import { getStand } from "../api/adminApi";
 import { getOneMatch } from "../api/userApi";
 import { baseURL } from "../constants/constant";
 import Checkout from "../components/Checkout";
 import Moment from "react-moment";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Ticket() {
   const [data, setData] = useState([]);

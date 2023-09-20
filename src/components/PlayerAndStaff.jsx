@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import banner from "../assets/banners/playerpage.png";
 import { getPlayer } from "../api/userApi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { baseURL } from "../constants/constant";
 
 function PlayerAndStaff() {
