@@ -166,7 +166,7 @@ export async function getOnePlayer(id) {
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Player Deatiles..." });
   }
-}
+} 
 
 
 export async function doPayment(values, matchId,total,stand) {

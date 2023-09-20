@@ -92,7 +92,7 @@ function HeadToHead() {
 
       <div className="bg-slate-400 h-16 w-full px-36 text-end text-3xl">
         <Link to={`/ticket/${match._id}`}>
-          <h1 className="text-darkPurple font-bold">Get Tickets Now</h1>
+          <h1 className="text-darkPurple font-bold hover:underline">Get Tickets Now</h1>
         </Link>
       </div>
     </div>

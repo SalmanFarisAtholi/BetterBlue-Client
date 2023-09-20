@@ -5,7 +5,6 @@ import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import { Link, useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 import { baseURL } from "../constants/constant";
-import Footer from "./Footer";
 function UserFixtures() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -61,7 +60,7 @@ function UserFixtures() {
               <h1 className="p-2">{item.home}</h1>
             </div>
             <div className="text-white">
-              <h1 className="hover:shadow-2xl shadow-white">
+              <h1 className="hover:shadow-2xl hover:shadow-white hover:underline">
                 <Link to={`/headToHead/${item._id}`}>
                   More & Get Tickets Now
                 </Link>
@@ -70,7 +69,6 @@ function UserFixtures() {
           </div>
         ))}
       </div>
-      <Footer/>
     </div>
   );
 }

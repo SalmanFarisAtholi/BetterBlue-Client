@@ -13,7 +13,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Ticket() {
   const [data, setData] = useState([]);
-  const { id } = useParams();
+  const { id } = useParams(); 
   const [match, setMatch] = useState([]);
 
   useEffect(() => {

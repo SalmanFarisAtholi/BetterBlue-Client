@@ -6,7 +6,6 @@ import { GiBootKick } from "react-icons/gi";
 import { useParams } from "react-router-dom";
 import { getOnePlayer } from "../api/userApi";
 import { baseURL } from "../constants/constant";
-import Footer from "./Footer";
 import Moment from "react-moment";
 
 function OnePlayer() {
@@ -77,7 +76,6 @@ function OnePlayer() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

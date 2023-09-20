@@ -24,6 +24,7 @@ import News from "../components/News";
 import Results from "../components/Results";
 import About from "../components/About";
 import PlayerAndStaff from "../components/PlayerAndStaff";
+import Footer from "../components/Footer";
 function UserRouter() {
   return (
     <>
@@ -54,6 +55,7 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <Profile />
+              <Footer/>
             </UserProtectedRoutes>
           }
         />
@@ -82,6 +84,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <UserHome />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -92,6 +96,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <UserFixtures />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -102,6 +108,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <HeadToHead />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -112,6 +120,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <Ticket />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -122,6 +132,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <PaymentSucces />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -132,6 +144,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <News />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -142,6 +156,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <Results />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />{" "}
@@ -152,6 +168,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <PlayerAndStaff />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -162,6 +180,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <About />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />
@@ -172,6 +192,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <Sponsor />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />{" "}
@@ -182,6 +204,8 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <OnePlayer />
+              <Footer/>
+
             </UserProtectedRoutes>
           }
         />

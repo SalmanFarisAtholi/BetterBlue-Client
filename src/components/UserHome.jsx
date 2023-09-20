@@ -4,7 +4,10 @@ import champions from "../assets/cups/champions.png";
 import league from "../assets/cups/leage.png";
 import kids from "../assets/cups/kids.png";
 import women from "../assets/cups/women.png";
-
+import ucl from "../assets/banners/ucl.png";
+import la from "../assets/banners/league.png";
+import wla from "../assets/banners/wleague.png";
+import junior from "../assets/banners/junior.png";
 function UserHome() {
   return (
     <div>
@@ -23,7 +26,7 @@ function UserHome() {
         </div>
       </div>
 
-      <div className="bg-darkPurple flex text-white">
+      {/* <div className="bg-darkPurple flex text-white">
         <div className="w-1/2 p-16">
           <div className="">
             <img src={banner} />
@@ -32,6 +35,47 @@ function UserHome() {
         <div className="w-1/2 p-36">
           <h1>Match result</h1>
           <h1>Watch our previous match Highlights</h1>
+        </div>
+      </div> */}
+
+      <div className="bg-darkPurple">
+        <div className="text-white text-center text-3xl py-14">
+          <h1>Participating Tournaments</h1>
+        </div>
+        <div className="flex flex-wrap">
+          <div className="w-1/2 p-8">
+            <h1 className="text-white text-center p-2 text-2xl">
+              Premier League
+            </h1>
+
+            <div className="flex items-center justify-center">
+              <img src={la} alt="" />
+            </div>
+          </div>
+          <div className="w-1/2 p-8">
+          <h1 className="text-white text-center p-2 text-2xl">
+              Women's League
+            </h1>
+            <div className="flex items-center justify-center">
+              <img src={wla} alt="" />
+            </div>
+          </div>
+          <div className="w-1/2 p-8">
+          <h1 className="text-white text-center p-2 text-2xl">
+              Champion's Cup
+            </h1>
+            <div className="flex items-center justify-center">
+              <img src={ucl} alt="" />
+            </div>
+          </div>
+          <div className="w-1/2 p-8">
+          <h1 className="text-white text-center p-2 text-2xl">
+              Junior Champion's Cup
+            </h1>
+            <div className="flex items-center justify-center">
+              <img src={junior} alt="" />
+            </div>
+          </div>
         </div>
       </div>
 

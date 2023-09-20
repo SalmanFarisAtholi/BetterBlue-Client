@@ -3,7 +3,6 @@ import banner from "../assets/banners/playerpage.png";
 import { getPlayer } from "../api/userApi";
 import { Link, useNavigate } from "react-router-dom";
 import { baseURL } from "../constants/constant";
-import Footer from "./Footer";
 
 function PlayerAndStaff() {
   const [data, setData] = useState([]);
@@ -46,7 +45,6 @@ function PlayerAndStaff() {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

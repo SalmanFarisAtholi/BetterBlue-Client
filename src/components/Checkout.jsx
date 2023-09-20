@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import { toast, Toaster } from "react-hot-toast";
 import { getStand } from "../api/adminApi";
-// import { Razorpay } from "razorpay";
-import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 
 import { doPayment, verifyPayment } from "../api/userApi";
 import { BsFillPersonPlusFill } from "react-icons/bs";
@@ -29,13 +27,11 @@ const Checkout = (props) => {
   useEffect(() => {
     let Data = getStand();
     Data.then((data) => {
-      // console.log(data.data);
       setData(data.data);
     }).catch((error) => {
       console.log(error);
     });
   }, []);
-  //   const toaster = useToaster();
 
   const initialValues = {
     email: user,
