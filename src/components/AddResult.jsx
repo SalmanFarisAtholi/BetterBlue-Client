@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { useFormik, Field } from "formik";
+import { useFormik } from "formik";
 import { addResult, getMatch } from "../api/adminApi";
 import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";

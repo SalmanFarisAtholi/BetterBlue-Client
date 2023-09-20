@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import { IoFootballSharp } from "react-icons/io5";
 import { PiTShirtFill } from "react-icons/pi";
 import { GiBootKick } from "react-icons/gi";
@@ -19,12 +18,13 @@ function OnePlayer() {
     }).catch((error) => {
       console.log(error);
     });
-  }, []);
+  });
   return (
     <div className="bg-darkPurple">
       <div className="flex p-5 ">
         <div className="w-5/12 flex items-center justify-center">
           <img className="border border-sky-500 w-5/6 " 
+          alt=""
             src={`${baseURL}/${player.photo}`}
             />
         </div>

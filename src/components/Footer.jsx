@@ -11,13 +11,13 @@ const Footer = () => {
               reserved.
             </div>
             <div className="space-x-4">
-              <a href="#" className="text-white hover:text-gray-400">
+              <a  className="text-white hover:text-gray-400">
                 Facebook
               </a>
-              <a href="#" className="text-white hover:text-gray-400">
+              <a className="text-white hover:text-gray-400">
                 Twitter
               </a>
-              <a href="#" className="text-white hover:text-gray-400">
+              <a className="text-white hover:text-gray-400">
                 Instagram
               </a>
             </div>

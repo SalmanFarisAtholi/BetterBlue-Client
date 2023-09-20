@@ -35,6 +35,7 @@ function AddMatch() {
       });
       addMatchPromise
         .then(function () {
+          setMessage("Done")
           setTimeout(() => {
             navigate("/admin/fixtures");
           }, 2000);

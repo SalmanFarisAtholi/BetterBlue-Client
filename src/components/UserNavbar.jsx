@@ -28,12 +28,12 @@ function UserNavbar() {
           <div className="hidden md:block">
             <div className="flex items-center justify-evenly">
               <div className="flex items-center justify-evenly">
-                <a  className="px-14 py-2">
+                <span className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     <Link to={"/home"}>Home</Link>
                   </p>
-                </a>
-                <a  className="px-14 py-2">
+                </span>
+                <span  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     <span>
                       <div className="dropdown">
@@ -64,20 +64,20 @@ function UserNavbar() {
                     </span>
                   
                   </p>
-                </a>
-                <a  className="px-14 py-2">
+                </span>
+                <span  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                   <Link to={"/about"}> About Us</Link>
 
                    
                   </p>
-                </a>
+                </span>
               </div>
               <div className="h-28 w-28">
                 <img src={logo} alt="" />
               </div>
               <div className="flex items-center justify-evenly">
-                <a  className="px-14 py-2">
+                <span  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     <span>
                       <div className="dropdown">
@@ -103,17 +103,17 @@ function UserNavbar() {
                       </div>
                     </span>
                   </p>
-                </a>
-                <a  className="px-14 py-2">
+                </span>
+                <span  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                     <Link to={"/profile"}>Profile</Link>
                   </p>
-                </a>
-                <a  className="px-14 py-2">
+                </span>
+                <span  className="px-14 py-2">
                   <p className="text-gray-300 hover:underline hover:text-white rounded-md text-lg font-medium">
                   <Link to={"/ticket"}>Ticket</Link>
                   </p>
-                </a>
+                </span>
               </div>
             </div>
           </div>
@@ -156,22 +156,21 @@ function UserNavbar() {
 
       <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
+          <span
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </span>
+          <span
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             About
-          </a>
-          <a
+          </span>
+          <span
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Services
-          </a>
+          </span>
           {/* Add more links as needed */}
         </div>
         <div className="pt-4 pb-3 border-t border-gray-700">

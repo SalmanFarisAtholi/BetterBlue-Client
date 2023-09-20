@@ -1,5 +1,5 @@
 import axios from "../axios/axios";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 export async function adminLogin({ email, password }) {
   console.log(email);
@@ -50,7 +50,7 @@ export async function addMatch(formData) {
   console.log(formData);
   try {
     if (formData) {
-      const { data } = await axios.post("/admin/addMatch", { formData });
+      await axios.post("/admin/addMatch", { formData });
     } else {
       return Promise.reject({ error: "Couldn't Create Match.." });
     }
@@ -188,7 +188,6 @@ export async function getResult() {
   }
 }
 
-
 export async function addPlayer(formData) {
   try {
     if (formData) {
@@ -210,12 +209,10 @@ export async function addPlayer(formData) {
   }
 }
 
-export async function addResult(values,goals) {
-
-
+export async function addResult(values, goals) {
   try {
     if (values) {
-      const { data } = await axios.post("/admin/addResult", { values,goals });
+      await axios.post("/admin/addResult", { values, goals });
     } else {
       return Promise.reject({ error: "Couldn't Add Result.." });
     }

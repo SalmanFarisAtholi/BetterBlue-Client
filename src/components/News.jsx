@@ -35,6 +35,7 @@ function News() {
               <div className="flex items-center justify-center">
                 <img
                   className="w-4/5 max-h-72"
+                  alt=""
                   src={`${baseURL}/${item.image}`}
                 />
               </div>

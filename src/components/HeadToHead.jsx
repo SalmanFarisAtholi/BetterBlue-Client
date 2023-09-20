@@ -25,7 +25,7 @@ function HeadToHead() {
     }).catch((error) => {
       console.log(error);
     });
-  }, [id]);
+  });
   return (
     <div>
       <div

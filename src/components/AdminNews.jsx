@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getNews } from "../api/adminApi";
 import { baseURL } from "../constants/constant";
 
@@ -28,7 +28,7 @@ function AdminNews() {
             <div className="flex items-center justify-center">
               <img className="w-4/5 max-h-72"
                   src={`${baseURL}/${item.image}`}
-                  />
+               alt=""   />
             </div>
             <div className="text-white flex justify-center py-3">
               <h1 className="text-3xl font-semibold"> {item.headline}</h1>

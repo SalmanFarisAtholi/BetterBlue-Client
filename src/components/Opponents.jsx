@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/Logo/Better_Blue-removebg-preview.png";
 import { getOpponent } from "../api/adminApi";
 import { baseURL } from "../constants/constant";
 

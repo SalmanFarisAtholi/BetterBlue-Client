@@ -16,7 +16,7 @@ function EditOpponent() {
     }).catch((error) => {
       console.log(error);
     });
-  }, []);
+  });
   const [uploadedImage, setUploadedImage] = useState("");
   const [message, setMessage] = useState("");
   const handleFileChange = (event) => {

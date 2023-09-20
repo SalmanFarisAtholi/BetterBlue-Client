@@ -23,7 +23,7 @@ export async function authenticate(email) {
 }
 
 /** get User details */
-export async function getUser(email ) {
+export async function getUser(email) {
   try {
     const { data } = await axios.get(`/user/${email}`);
     return { data };
@@ -41,7 +41,7 @@ export async function registerUser(credentials) {
     } = await axios.post(`/register`, credentials);
 
     let { username, email } = credentials;
-
+    console.log(username);
     /** send email */
     if (status === 201) {
       await axios.post("/registerMail", { userEmail: email, otp });
@@ -148,7 +148,6 @@ export async function getResult() {
   }
 }
 
-
 export async function getOneMatch(id) {
   console.log(id);
   try {
@@ -166,24 +165,27 @@ export async function getOnePlayer(id) {
   } catch (error) {
     return Promise.reject({ error: "Couldn't find Player Deatiles..." });
   }
-} 
+}
 
-
-export async function doPayment(values, matchId,total,stand) {
+export async function doPayment(values, matchId, total, stand) {
   try {
-    const { data } = await axios.post(`/doPayment`,{values,matchId,total,stand});
+    const { data } = await axios.post(`/doPayment`, {
+      values,
+      matchId,
+      total,
+      stand,
+    });
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Payment Failed" });
   }
 }
-export async function verifyPayment(response,newData){
+export async function verifyPayment(response, newData) {
   try {
-    const { data } = await axios.post(`/verifyPayment`,{response,newData});
+    const { data } = await axios.post(`/verifyPayment`, { response, newData });
     return Promise.resolve({ data });
   } catch (error) {
     return Promise.reject({ error: "Payment Veification Failed" });
-
   }
 }
 
