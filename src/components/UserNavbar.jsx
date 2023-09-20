@@ -42,7 +42,7 @@ function UserNavbar() {
                           onMouseEnter={toggleDropdown}
                           onMouseLeave={toggleDropdown}
                         >
-                          <a className="hover:cursor-pointer">Pages</a>
+                          <span className="hover:cursor-pointer">Pages</span>
                           {isDropdownOpen && (
                             <div className="dropdown-content absolute bg-darkPurple rounded-md p-1">
                                <div className="hover:bg-white p-2 hover:text-black ">
@@ -86,7 +86,7 @@ function UserNavbar() {
                           onMouseEnter={toggleSecoundDropdown}
                           onMouseLeave={toggleSecoundDropdown}
                         >
-                          <a className="hover:cursor-pointer">Matches</a>
+                          <span className="hover:cursor-pointer">Matches</span>
                           {secoundDropdown && (
                             <div className="dropdown-content absolute bg-darkPurple rounded-md p-1">
                               <div className="hover:bg-white p-2 hover:text-black ">

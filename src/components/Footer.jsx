@@ -11,15 +11,15 @@ const Footer = () => {
               reserved.
             </div>
             <div className="space-x-4">
-              <a  className="text-white hover:text-gray-400">
+              <span  className="text-white hover:text-gray-400">
                 Facebook
-              </a>
-              <a className="text-white hover:text-gray-400">
+              </span>
+              <span className="text-white hover:text-gray-400">
                 Twitter
-              </a>
-              <a className="text-white hover:text-gray-400">
+              </span>
+              <span className="text-white hover:text-gray-400">
                 Instagram
-              </a>
+              </span>
             </div>
           </div>
         </div>
