@@ -213,3 +213,11 @@ export async function getPlayer() {
     return Promise.reject({ error: "Couldn't find Player..." });
   }
 }
+export async function getUserTicket(id) {
+  try {
+    const { data } = await axios.get(`/getUserTicket/${id}`);
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't find tickets..." });
+  }
+}

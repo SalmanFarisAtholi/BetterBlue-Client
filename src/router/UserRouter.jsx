@@ -24,6 +24,7 @@ import Results from "../components/Results";
 import About from "../components/About";
 import PlayerAndStaff from "../components/PlayerAndStaff";
 import Footer from "../components/Footer";
+import UserTickets from "../components/UserTickets";
 function UserRouter() {
   return (
     <>
@@ -143,6 +144,18 @@ function UserRouter() {
             <UserProtectedRoutes>
               <UserNavbar />
               <News />
+              <Footer/>
+
+            </UserProtectedRoutes>
+          }
+        />
+          <Route
+          exact
+          path="/ticket"
+          element={
+            <UserProtectedRoutes>
+              <UserNavbar />
+              <UserTickets />
               <Footer/>
 
             </UserProtectedRoutes>

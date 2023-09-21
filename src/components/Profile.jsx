@@ -19,7 +19,7 @@ export default function Profile() {
     }).catch((error) => {
       console.log(error);
     });
-  }, [user]);
+  },[user] );
   function userLogout() {
     localStorage.removeItem("token");
     navigate("/");

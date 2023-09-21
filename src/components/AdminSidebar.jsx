@@ -12,10 +12,11 @@ import {
   TbPlayerTrackNext,
   TbPlayerTrackPrev,
 } from "react-icons/tb";
-import { BsTicketPerforated } from "react-icons/bs";
+// import { BsTicketPerforated } from "react-icons/bs";
 // import { TfiGallery } from "react-icons/tfi";
 import { SlBadge } from "react-icons/sl";
 import { GiVerticalBanner } from "react-icons/gi";
+// import { BiLogOut } from "react-icons/bi";
 
 function AdminSidebar({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ function AdminSidebar({ children }) {
     setIsOpen(!isOpen);
   };
 
+ 
   const menuItem = [
     {
       path: "adminside",
@@ -59,11 +61,11 @@ function AdminSidebar({ children }) {
       name: "News",
       icon: <ImNewspaper />,
     },
-    {
-      path: "tickets",
-      name: "Tickets",
-      icon: <BsTicketPerforated />,
-    },
+    // {
+    //   path: "tickets",
+    //   name: "Tickets",
+    //   icon: <BsTicketPerforated />,
+    // },
     // {
     //   path: "gallary",
     //   name: "Gallary",
@@ -114,6 +116,7 @@ function AdminSidebar({ children }) {
           </NavLink>
         ))}
       </div>
+   
       <main className="w-full">{children}</main>
     </div>
   );

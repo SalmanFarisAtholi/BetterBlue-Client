@@ -24,6 +24,7 @@ import ResultManage from "../components/ResultManage";
 import AddResult from "../components/AddResult";
 import PlayerUpdate from "../components/PlayerUpdate";
 import EditOpponent from "../components/EditOpponent";
+// import AdminTicket from "../components/AdminTicket";
 
 function AdminRouter() {
   return (
@@ -49,6 +50,7 @@ function AdminRouter() {
           <Route exact path="results/addResult" element={<AddResult />} />
           <Route exact path="playerUpdate" element={<PlayerUpdate />} />
           <Route exact path="opponent/editOpponent/:id" element={<EditOpponent />} />
+         {/* <Route exact path="/tickets" element={<AdminTicket />} /> */}
  </Route>
         <Route exact path="/" element={<AdminLogin />} />
       </Routes>
