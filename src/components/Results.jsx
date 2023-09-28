@@ -14,7 +14,7 @@ function Results() {
       setData(data.data);
       console.log(data.data);
     }).catch((error) => {
-      console.log(error);
+      console.log(error);   
     });
   }, []);
   return (
@@ -61,10 +61,10 @@ function Results() {
               </h1>
               <h1 className="p-2">{item.match.home}</h1>
             </div>
-            <div className="text-white">
+            {/* <div className="text-white">
               <h1 className="hover:shadow-2xl shadow-white">
               <Link to={`/oneResult/${item._id}`}>More..</Link>             </h1>
-            </div>
+            </div> */}
             <div className="text-white">
               <h1 className="hover:shadow-2xl shadow-white">
                 <Link to={item.link} target="_blank">Watch Hilights</Link>

@@ -27,7 +27,7 @@ function UserTickets() {
             <th>Match Time</th>
           <th>Total</th>
           </tr>
-          {data.map((item) => (
+          {data?.map((item) => (
             <tr className="flex text-center items-center justify-around p-3">
               <td className="w-1/4">{item.stand}</td>
               <td className="w-1/4">VS {item.matchId.opponentId.name}</td>
