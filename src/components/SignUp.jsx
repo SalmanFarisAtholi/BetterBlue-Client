@@ -1,13 +1,12 @@
 import React from "react";
-import { Link,useNavigate } from "react-router-dom";
-import {toast, Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { registerValidate } from "../helper/validate";
 import { registerUser } from "../api/userApi";
 
-
 function SignUp() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,19 +23,20 @@ function SignUp() {
     validateOnChange: false,
     onSubmit: async (values) => {
       console.log(values);
-     let registerPromise= registerUser(values)
-      toast.promise(registerPromise,{
-        loading:"Creating",
-        success:<b>Register Success</b>,
-        error:<b>Cant register</b>
-
-      })
-      registerPromise.then(function(){navigate("/otp")}).catch(()=>{
-console.log("signup error");
-      })
+      let registerPromise = registerUser(values);
+      toast.promise(registerPromise, {
+        loading: "Creating",
+        success: <b>Register Success</b>,
+        error: <b>Cant register</b>,
+      });
+      registerPromise
+        .then(function () {
+          navigate("/otp");
+        })
+        .catch(() => {
+          console.log("signup error");
+        });
     },
-
-
   });
   return (
     <div className="flex items-center justify-center min-h-screen bg-litePurple ">
@@ -59,6 +59,7 @@ console.log("signup error");
                     {...formik.getFieldProps("firstname")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="text"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -67,6 +68,7 @@ console.log("signup error");
                     {...formik.getFieldProps("email")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="email"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -75,6 +77,7 @@ console.log("signup error");
                     {...formik.getFieldProps("password")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="password"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -85,7 +88,9 @@ console.log("signup error");
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     name="country"
                     id=""
+                    required
                   >
+                    <option value="India">-Select-</option>
                     <option value="India">India</option>
                     <option value="Algeria">Algeria</option>
                     <option value="American Samoa">American Samoa</option>
@@ -102,6 +107,7 @@ console.log("signup error");
                     {...formik.getFieldProps("lastname")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="text"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -112,6 +118,7 @@ console.log("signup error");
                     {...formik.getFieldProps("mobile")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="tel"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -122,6 +129,7 @@ console.log("signup error");
                     {...formik.getFieldProps("cpassword")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="password"
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -130,6 +138,7 @@ console.log("signup error");
                     {...formik.getFieldProps("city")}
                     className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                     type="text"
+                    required
                   />
                 </div>
               </div>

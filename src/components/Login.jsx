@@ -59,6 +59,7 @@ export default function Login() {
                 {...formik.getFieldProps("email")}
                 className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                 type="email"
+                required
               />
             </div>
             <div className="mb-4">
@@ -67,6 +68,7 @@ export default function Login() {
                 {...formik.getFieldProps("password")}
                 className="w-64 px-3 py-2 border border-gray-300 rounded-md"
                 type="password"
+                required
               />
             </div>
             <div className="text-center py-2">
