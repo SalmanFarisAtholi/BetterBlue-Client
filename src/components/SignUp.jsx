@@ -31,7 +31,9 @@ function SignUp() {
         error:<b>Cant register</b>
 
       })
-      registerPromise.then(function(){navigate("/otp")})
+      registerPromise.then(function(){navigate("/otp")}).catch(()=>{
+console.log("signup error");
+      })
     },
 
 
