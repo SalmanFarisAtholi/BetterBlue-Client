@@ -220,3 +220,17 @@ export async function addResult(values, goals) {
     return Promise.reject({ error: "Couldn't Add Result.." });
   }
 }
+export async function playerUpdate(goals, assists) {
+  try {
+    console.log(goals);
+    console.log(assists);
+
+    if (goals) {
+      await axios.post("/admin/playerUpdate", { goals, assists });
+    } else {
+      return Promise.reject({ error: "Couldn't update Players.." });
+    }
+  } catch (error) {
+    return Promise.reject({ error: "Couldn't update Players.." });
+  }
+}

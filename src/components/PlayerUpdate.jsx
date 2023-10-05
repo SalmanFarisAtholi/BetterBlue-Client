@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getPlayer } from "../api/adminApi";
+import { getPlayer, playerUpdate } from "../api/adminApi";
+import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 
 function PlayerUpdate() {
   const [players, setPlayers] = useState([]);
@@ -17,6 +19,7 @@ function PlayerUpdate() {
       console.log(error);
     });
   }, []);
+  const navigate = useNavigate();
 
   const addOption = () => {
     if (selectedOption.trim() !== "") {
@@ -32,8 +35,24 @@ function PlayerUpdate() {
     }
   };
 
+  const render = () => {
+    navigate("/admin/results");
+  };
+  const statusUpdate = () => {
+    playerUpdate(options, options1)
+      .then(() => {
+        toast.success("Player Update Success");
+        setTimeout(() => {
+          navigate("/admin/results");
+        }, 2000);
+      })
+      .catch(() => {
+        toast.error("Couldn't update Players..");
+      });
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-litePurple">
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="w-4/5 h-2/3  bg-darkPurple my-24 shadow-md shadow-black">
         <div className="text-center py-3">
           <h1 className="text-2xl  font-bold text-slate-100 mb-4">
@@ -107,6 +126,20 @@ function PlayerUpdate() {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="flex gap-6 items-center justify-center pb-3">
+          <button
+            onClick={statusUpdate}
+            className="px-4 py-2 bg-litePurple text-white  shadow-md shadow-black hover:bg-slate-800"
+          >
+            UPDATE
+          </button>
+          <button
+            onClick={render}
+            className="px-4 py-2 bg-litePurple text-white  shadow-md shadow-black hover:bg-slate-800"
+          >
+            SKIP
+          </button>
         </div>
       </div>
     </div>
