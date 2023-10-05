@@ -15,7 +15,6 @@ function HeadToHead() {
 
   const [match, setMatch] = useState([]);
   useEffect(() => {
-    window.scrollTo(0, 0);
 
 
     let Data = getOneMatch(id);
